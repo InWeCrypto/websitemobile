@@ -1,0 +1,10 @@
+{
+  "presets": ["env", "react", "stage-0"],
+  "plugins": [
+    "syntax-dynamic-import",
+    "transform-class-properties",
+    "transform-decorators-legacy",
+    "transform-es2015-arrow-functions",
+    "transform-object-rest-spread"
+  ]
+}

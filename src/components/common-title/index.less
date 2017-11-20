@@ -1,0 +1,51 @@
+@import "../../lib/css/base.less";
+.common-title {
+	height: 0.4rem;
+	line-height: 0.38rem;
+	background: @black;
+	position: relative;
+	color: @white;
+	text-align: center;
+	.title-txt {
+		font-size: 0.16rem;
+		max-width: 85%;
+		display: inline-block;
+		overflow: hidden;
+		text-overflow: ellipsis;
+		white-space: nowrap;
+		vertical-align: middle;
+	}
+	.return {
+		width: 0.35rem;
+		height: 100%;
+		line-height: 0.38rem;
+		position: absolute;
+		left: 0;
+		bottom: 0;
+		.returnbtn {
+			background: url("../../lib/img/returnbtn.png") left top no-repeat;
+			display: inline-block;
+			width: 0.21rem;
+			height: 0.17rem;
+			background-size: 100%;
+			vertical-align: middle;
+		}
+	}
+	.menu-box {
+		position: absolute;
+		right: 0;
+		top: 0;
+		height: 100%;
+		line-height: 0.38rem;
+		padding: 0 0.1rem;
+
+		.menu-btn {
+			background: url("../../lib/img/menubtn.png") left top no-repeat;
+			display: inline-block;
+			width: 0.22rem;
+			height: 0.16rem;
+			background-size: 100%;
+			vertical-align: middle;
+		}
+	}
+}
