@@ -1,8 +1,6 @@
-(function(window, document) {
-	const setViewFontSize = () => {
-		var doc = document;
-		var win = window;
-		var docEl = doc.documentElement,
+const util = {
+	setViewFontSize() {
+		var docEl = document.documentElement,
 			resizeEvt =
 				"orientationchange" in window ? "orientationchange" : "resize",
 			recalc = function() {
@@ -12,11 +10,11 @@
 				docEl.style.fontSize = 100 * (clientWidth / 320) + "px";
 			};
 		console.log(resizeEvt);
-		if (!doc.addEventListener) return;
-		win.addEventListener(resizeEvt, recalc, false);
-		doc.addEventListener("DOMContentLoaded", recalc, false);
-	};
-	window.util = {
-		setViewFontSize: setViewFontSize
-	};
+		if (!document.addEventListener) return;
+		window.addEventListener(resizeEvt, recalc, false);
+		document.addEventListener("DOMContentLoaded", recalc, false);
+	}
+};
+(function(window, document) {
+	util.setViewFontSize();
 })(window, document);

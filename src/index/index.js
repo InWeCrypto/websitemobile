@@ -9,10 +9,7 @@ export default class AppComponent extends Component {
 	componentWillMount() {
 		//document.title = "首页";
 	}
-	componentDidMount() {
-		console.log(util);
-		util.setViewFontSize();
-	}
+	componentDidMount() {}
 	render() {
 		return (
 			<Router>
