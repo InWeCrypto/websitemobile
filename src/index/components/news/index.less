@@ -14,6 +14,55 @@
 	}
 	.news {
 		flex: 1;
+		overflow: hidden;
+		box-sizing: border-box;
+		padding: 0 0.3rem;
+		height: 0.6rem;
+		.slick-initialized {
+			height: 100%;
+			box-sizing: border-box;
+			padding: 0.13rem 0;
+		}
+		.slick-dots {
+			display: none !important;
+		}
+		.slick-track {
+			height: 100%;
+		}
+		.slick-slide {
+			height: 100% !important;
+		}
+		.slick-prev,
+		.slick-next {
+			border-radius: 50%;
+			background: #fff;
+			border: none;
+		}
+		.slick-prev:before,
+		.slick-next:before {
+			position: absolute;
+			left: -0.03rem;
+			top: -0.01rem;
+			color: @grey;
+			opacity: 1;
+			font-size: 0.26rem;
+		}
+		.title {
+			overflow: hidden;
+			text-overflow: ellipsis;
+			white-space: nowrap;
+			color: @grey1;
+			font-size: 0.16rem;
+		}
+		.intro {
+			overflow: hidden;
+			text-overflow: ellipsis;
+			white-space: nowrap;
+			color: @grey1;
+			font-size: 0.14rem;
+			padding: 0 0.1rem;
+			margin-top: 0.02rem;
+		}
 	}
 	.more {
 		display: block;

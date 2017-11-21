@@ -8,15 +8,31 @@ export default class CommonTitle extends Component {
 			showReturn: false
 		};
 	}
+	toggleMenu() {
+		this.setState({
+			showMore: !this.state.showMore
+		});
+	}
+	menuClick() {
+		this.setState({
+			showMore: false
+		});
+	}
 	render() {
 		const state = this.state;
 		return (
 			<div className="common-title">
 				<span className="title-txt">测试title</span>
 				<div className="menu-box">
-					<span className="menu-btn" />
+					<span
+						className="menu-btn"
+						onClick={this.toggleMenu.bind(this)}
+					/>
 					{state.showMore && (
-						<div className="menu-list">
+						<div
+							className="menu-list"
+							onClick={this.menuClick.bind(this)}
+						>
 							<div className="menu-item cur">11</div>
 							<div className="menu-item">11</div>
 						</div>

@@ -1,0 +1,43 @@
+@import "../../../lib/css/base.less";
+.project {
+	.project-title {
+		font-size: 0.14rem;
+		text-align: center;
+		color: @grey1;
+		.line {
+			vertical-align: middle;
+			display: inline-block;
+			width: 0.5rem;
+			height: 0.01rem;
+			background: @grey2;
+		}
+		.txt {
+			vertical-align: middle;
+			margin: 0.1rem;
+		}
+	}
+	.project-box {
+		box-sizing: border-box;
+		padding: 0.1rem 2vw;
+		.item {
+			width: 45vw;
+			height: 45vw;
+			background: @orange;
+			float: left;
+			margin: 1.5vw;
+			color: @white;
+			text-align: center;
+			display: flex;
+			align-items: center;
+			justify-content: center;
+		}
+		.item.item1 {
+			width: 93vw;
+			height: 93vw;
+		}
+		.item.item2 {
+			width: 93vw;
+			height: 45vw;
+		}
+	}
+}

@@ -54,6 +54,7 @@
 			top: 0.4rem;
 			background: @grey;
 			width: 0.84rem;
+			z-index: 1;
 			.menu-item {
 				padding: 0.1rem 0.05rem;
 				overflow: hidden;
@@ -61,8 +62,11 @@
 				white-space: nowrap;
 				line-height: 1;
 			}
-			.menu-item.cur {
+			.menu-item:active {
 				background: @orange1;
+			}
+			.menu-item.cur {
+				//background: @orange1;
 			}
 		}
 	}

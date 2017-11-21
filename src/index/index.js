@@ -5,11 +5,12 @@ import { HashRouter as Router } from "react-router-dom";
 import CommonTitle from "../components/common-title/";
 import Banner from "./components/banner/";
 import News from "./components/news";
+import Project from "./components/project/";
 export default class AppComponent extends Component {
-	componentWillMount() {
-		//document.title = "首页";
+	componentWillMount() {}
+	componentDidMount() {
+		document.title = "首页";
 	}
-	componentDidMount() {}
 	render() {
 		return (
 			<Router>
@@ -17,6 +18,7 @@ export default class AppComponent extends Component {
 					<CommonTitle />
 					<Banner />
 					<News />
+					<Project />
 				</div>
 			</Router>
 		);
