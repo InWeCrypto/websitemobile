@@ -1,0 +1,27 @@
+@import "~slick-carousel/slick/slick.css";
+@import "~slick-carousel/slick/slick-theme.css";
+@import "../../../lib/css/base.less";
+.news-box {
+	box-sizing: border-box;
+	display: flex;
+	border-left: 0.04rem solid @orange1;
+	margin: 0.1rem 0;
+	align-items: center;
+	color: @white;
+	background: @grey;
+	.title {
+		padding: 0 0.1rem;
+	}
+	.news {
+		flex: 1;
+	}
+	.more {
+		display: block;
+		width: 0.39rem;
+		height: 0.6rem;
+
+		background: url("../../../lib/img/more.png") @orange1 center center
+			no-repeat;
+		background-size: 80% auto;
+	}
+}

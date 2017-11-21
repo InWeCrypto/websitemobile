@@ -1,22 +1,32 @@
 import "./index.less";
 import React, { Component } from "react";
-import ReactDOM from "react-dom";
 export default class CommonTitle extends Component {
 	constructor(props) {
 		super(props);
+		this.state = {
+			showMore: false,
+			showReturn: false
+		};
 	}
 	render() {
+		const state = this.state;
 		return (
 			<div className="common-title">
 				<span className="title-txt">测试title</span>
 				<div className="menu-box">
 					<span className="menu-btn" />
-					<div>sss</div>
+					{state.showMore && (
+						<div className="menu-list">
+							<div className="menu-item cur">11</div>
+							<div className="menu-item">11</div>
+						</div>
+					)}
 				</div>
-				<div className="return">
-					<span className="returnbtn" />
-				</div>
-				<div className="common-search">ss</div>
+				{state.showReturn && (
+					<div className="return">
+						<span className="returnbtn" />
+					</div>
+				)}
 			</div>
 		);
 	}

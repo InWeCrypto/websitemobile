@@ -1,7 +1,6 @@
 @import "../../lib/css/base.less";
 .common-title {
 	height: 0.4rem;
-	line-height: 0.38rem;
 	background: @black;
 	position: relative;
 	color: @white;
@@ -14,6 +13,8 @@
 		text-overflow: ellipsis;
 		white-space: nowrap;
 		vertical-align: middle;
+		height: 100%;
+		line-height: 0.38rem;
 	}
 	.return {
 		width: 0.35rem;
@@ -46,6 +47,23 @@
 			height: 0.16rem;
 			background-size: 100%;
 			vertical-align: middle;
+		}
+		.menu-list {
+			position: absolute;
+			right: 0;
+			top: 0.4rem;
+			background: @grey;
+			width: 0.84rem;
+			.menu-item {
+				padding: 0.1rem 0.05rem;
+				overflow: hidden;
+				text-overflow: ellipsis;
+				white-space: nowrap;
+				line-height: 1;
+			}
+			.menu-item.cur {
+				background: @orange1;
+			}
 		}
 	}
 }
