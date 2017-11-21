@@ -14,7 +14,9 @@ export default class project extends Component {
 					<span className="line" />
 				</div>
 				<div className="project-box">
-					<div className="item">1</div>
+					<div className="item">
+						<a href="./particular-online/?id=1">1</a>
+					</div>
 					<div className="item">1</div>
 					<div className="item item1">1</div>
 					<div className="item item2">1</div>

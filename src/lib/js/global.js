@@ -6,10 +6,9 @@ const util = {
 			recalc = function() {
 				var clientWidth = docEl.clientWidth;
 				if (!clientWidth) return;
-				if (clientWidth > 750) clientWidth = 750; //这里限制最大的宽度尺寸，从而实现PC端的两边留白等
+				if (clientWidth > 750) clientWidth = 750;
 				docEl.style.fontSize = 100 * (clientWidth / 350) + "px";
 			};
-		console.log(resizeEvt);
 		if (!document.addEventListener) return;
 		window.addEventListener(resizeEvt, recalc, false);
 		document.addEventListener("DOMContentLoaded", recalc, false);
