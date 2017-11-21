@@ -1,0 +1,52 @@
+@import "../../../lib/css/base.less";
+.realtime-box {
+	padding: 0.1rem 0;
+	.nav {
+		text-align: center;
+	}
+	.nav-box {
+		display: inline-block;
+		border: 0.01rem solid @orange1;
+		border-radius: 0.04rem;
+		text-align: center;
+		.navbtn {
+			display: inline-block;
+			box-sizing: border-box;
+			padding: 0.05rem 0;
+			color: @white;
+			width: 0.7rem;
+			border-right: 0.01rem solid @orange1;
+			box-sizing: border-box;
+		}
+		.navbtn:nth-last-child(1) {
+			border-right: 0;
+		}
+		.navbtn.cur {
+			background: @orange1;
+		}
+	}
+	.detail {
+		padding-top: 0.1rem;
+		.item {
+			margin: 0.15rem 0;
+			display: flex;
+		}
+		.name {
+			flex: 1;
+			box-sizing: border-box;
+			padding-right: 0.1rem;
+			text-align: right;
+		}
+		.value {
+			flex: 1;
+			box-sizing: border-box;
+			padding-left: 0.1rem;
+		}
+		.value.up {
+			color: @red;
+		}
+		.value.down {
+			color: @green;
+		}
+	}
+}
