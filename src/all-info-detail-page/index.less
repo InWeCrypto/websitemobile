@@ -1,0 +1,37 @@
+@import "../lib/css/base.less";
+html,
+body {
+	background: @white;
+}
+.detail-container {
+	color: @textblack;
+	padding: 0.1rem;
+	.detail-title {
+		font-size: 0.16rem;
+		text-align: center;
+		overflow: hidden;
+		text-overflow: ellipsis;
+		white-space: nowrap;
+	}
+	.detail-info {
+		padding: 0.1rem 0;
+		text-align: center;
+		color: #a4a4a4;
+		.txt {
+			margin: 0 0.05rem;
+		}
+		.collect {
+			width: 0.1rem;
+			height: 0.1rem;
+		}
+	}
+	.detail-cont {
+		p {
+			padding-bottom: 0.1rem;
+			text-align: left;
+		}
+		img {
+			max-width: 100%;
+		}
+	}
+}

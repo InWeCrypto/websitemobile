@@ -1,0 +1,26 @@
+@import "../lib/css/base.less";
+html,
+body {
+	background: @bg;
+}
+.list-box {
+	box-sizing: border-box;
+	padding: 0.1rem;
+}
+.group {
+	color: @white;
+	background: @blue;
+	.group-title {
+		font-size: 0.14rem;
+		overflow: hidden;
+		text-overflow: ellipsis;
+		white-space: nowrap;
+		box-sizing: border-box;
+		padding: 0.05rem;
+		text-align: center;
+	}
+	.group-cont {
+		display: flex;
+		align-items: flex-start;
+	}
+}

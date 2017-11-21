@@ -1,0 +1,66 @@
+@import "../../lib/css/base.less";
+.inews {
+	background: @white;
+	.inews-title {
+		color: @black;
+		text-align: center;
+		padding: 0.1rem;
+		border-bottom: 0.01rem solid @grey3;
+	}
+	.inews-container {
+		box-sizing: border-box;
+		padding: 0.1rem;
+	}
+	.inews-nav {
+		text-align: center;
+		.inews-navbox {
+			display: inline-block;
+			border-radius: 0.03rem;
+			border: 0.01rem solid @orange1;
+			.inews-navbtn {
+				width: 1rem;
+				padding: 0.08rem 0;
+				color: @orange1;
+				display: inline-block;
+			}
+			.inews-navbtn.cur {
+				background: @orange1;
+				color: @white;
+			}
+		}
+	}
+	.inews-list {
+		.inews-item {
+			display: flex;
+			align-items: flex-start;
+			padding: 0.1rem 0;
+			border-bottom: 0.01rem solid @grey3;
+			.img-box {
+				width: 1.6rem;
+				height: 0.9rem;
+				margin-right: 0.1rem;
+				img {
+					width: 100%;
+					height: 100%;
+				}
+			}
+			.inews-cont {
+				flex: 1;
+				.item-title {
+					font-size: 0.14rem;
+					color: @orange1;
+					overflow: hidden;
+					text-overflow: ellipsis;
+					white-space: nowrap;
+				}
+				.item-desc {
+					margin: 0.05rem 0;
+					color: #333;
+				}
+				.item-time {
+					color: #333;
+				}
+			}
+		}
+	}
+}

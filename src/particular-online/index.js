@@ -7,6 +7,7 @@ import { HashRouter as Router } from "react-router-dom";
 import CommonTitle from "../components/common-title/";
 import RealTime from "./components/realtime/";
 import Trade from "./components/trade/";
+import Inews from "../components/inews/";
 export default class AppComponent extends Component {
 	constructor(props) {
 		super(props);
@@ -40,7 +41,39 @@ export default class AppComponent extends Component {
 							</div>
 							<iframe className="intro-cont" />
 						</div>
-						<div className="news-box">11</div>
+						<div className="news-box">
+							<Inews />
+						</div>
+						<div className="box1">
+							<div className="box-item left">
+								<div className="box-title">Explorer</div>
+								<div className="box-cont">
+									<a className="a" href="" target="_blank">
+										baidu.com
+									</a>
+								</div>
+							</div>
+							<div className="box-item right">
+								<div className="box-title">Wallet</div>
+								<div className="box-cont">
+									<a className="wallet-item" href="">
+										IMEW
+									</a>
+								</div>
+							</div>
+						</div>
+						<div className="twitter">
+							<div className="twitter-title">Twitter</div>
+							<div className="twitter-cont" />
+						</div>
+						<div className="box2">
+							<div className="box-title">更多资讯</div>
+							<div className="box-cont">
+								<a className="moreinfo" href="">
+									s
+								</a>
+							</div>
+						</div>
 					</div>
 				</div>
 			</Router>

@@ -4,8 +4,9 @@ export default class CommonTitle extends Component {
 	constructor(props) {
 		super(props);
 		this.state = {
+			title: props.title ? props.title : "",
 			showMore: false,
-			showReturn: false
+			showReturn: props.showReturn ? props.showReturn : false
 		};
 	}
 	toggleMenu() {
@@ -18,11 +19,14 @@ export default class CommonTitle extends Component {
 			showMore: false
 		});
 	}
+	returnClick() {
+		window.history.go(-1);
+	}
 	render() {
 		const state = this.state;
 		return (
 			<div className="common-title">
-				<span className="title-txt">测试title</span>
+				<span className="title-txt">{state.title}</span>
 				<div className="menu-box">
 					<span
 						className="menu-btn"
@@ -40,7 +44,10 @@ export default class CommonTitle extends Component {
 				</div>
 				{state.showReturn && (
 					<div className="return">
-						<span className="returnbtn" />
+						<span
+							className="returnbtn"
+							onClick={this.returnClick.bind(this)}
+						/>
 					</div>
 				)}
 			</div>

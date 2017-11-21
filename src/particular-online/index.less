@@ -48,4 +48,73 @@ body {
 		border: 0;
 		background: rgba(0, 0, 0, 0.5);
 	}
+	.news-box {
+		margin: 0.1rem 0;
+	}
+	.box1 {
+		margin: 0.1rem 0;
+		display: flex;
+		align-items: flex-start;
+		.box-item {
+			flex: 1;
+			background: @blue;
+			color: @white;
+			.box-title {
+				padding: 0.08rem 0.05rem;
+				border-bottom: 0.01rem solid @white;
+			}
+			.box-cont {
+				padding: 0.1rem 0.03rem;
+			}
+			.a {
+				color: @white;
+				margin: 0.05rem 0;
+			}
+			.wallet-item {
+				background: @grey;
+				padding: 0.05rem 0.1rem;
+				color: @white;
+				font-size: 0.12rem;
+				margin-top: 0.05rem;
+			}
+		}
+		.box-item.left {
+			margin-right: 0.1rem;
+		}
+		.box-item.right {
+			margin-left: 0.1rem;
+		}
+	}
+	.twitter {
+		margin: 0.1rem 0;
+		background: @white;
+		color: @black;
+		.twitter-title {
+			padding: 0.1rem 0;
+			border-bottom: 0.01rem solid @grey3;
+			text-align: center;
+		}
+		.twitter-cont {
+			height: 2rem;
+		}
+	}
+	.box2 {
+		background: @blue;
+		.box-title {
+			padding: 0.1rem 0;
+			text-align: center;
+			color: @white;
+			border-bottom: 0.01rem solid @black;
+		}
+		.box-cont {
+			padding: 0.1rem 0 0 0.1rem;
+		}
+		.moreinfo {
+			width: 0.25rem;
+			height: 0.25rem;
+			margin: 0 0.1rem 0.1rem 0;
+			display: inline-block;
+			color: @white;
+		}
+	}
 }
