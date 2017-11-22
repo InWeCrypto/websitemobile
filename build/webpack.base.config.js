@@ -8,7 +8,7 @@ var entries = {};
 config.entries.forEach(function(entry) {
 	entries[entry.entryName] = entry.entry;
 });
-var rootPath = path.resolve(__dirname, "./src");
+var rootPath = path.resolve(__dirname, "../src");
 // 第三方依赖 js & css
 // 必须是所有页面都使用到的第三方库
 // 可配合插件 ProvidePlugin 省去依赖声明
@@ -17,8 +17,8 @@ entries.vendor = [
 	"whatwg-fetch",
 	"jquery",
 	"normalize.css",
-	"babel-polyfill"
-	//rootPath + "/src/views/lib/js/global.js"
+	"babel-polyfill",
+	rootPath + "/views/lib/js/global.js"
 ];
 
 function resolve(dir) {
