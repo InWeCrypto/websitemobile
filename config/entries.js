@@ -1,7 +1,7 @@
 var path = require("path");
 var fs = require("fs");
 var phone = require("./device");
-var dirSrc = path.resolve(__dirname, "../src");
+var dirSrc = path.resolve(__dirname, "../src/views");
 
 // 手机和PC分开
 // if (phone !== null) {

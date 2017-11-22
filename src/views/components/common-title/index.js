@@ -37,8 +37,13 @@ export default class CommonTitle extends Component {
 							className="menu-list"
 							onClick={this.menuClick.bind(this)}
 						>
-							<div className="menu-item cur">11</div>
-							<div className="menu-item">11</div>
+							<a href="../#/" className="menu-item">
+								首页
+							</a>
+							<a href="../all-info/#/" className="menu-item">
+								所有资讯
+							</a>
+							<a className="menu-item">Ico评测</a>
 						</div>
 					)}
 				</div>

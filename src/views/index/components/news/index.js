@@ -18,16 +18,24 @@ export default class News extends Component {
 	}
 	render() {
 		const settings = this.state.setting;
+		const news = this.props.newsList;
 		return (
 			<div className="news-box">
 				<div className="title">News</div>
 				<div className="news">
 					<Slider {...settings}>
-						<div className="cont">
-							<div className="title">张三丰</div>
-							<div className="intro">2</div>
-						</div>
-						<div className="cont">2</div>
+						{news &&
+							news.length > 0 &&
+							news.map((item, index) => {
+								return (
+									<div className="cont" key={index}>
+										<div className="title">
+											{item.title}
+										</div>
+										<div className="intro">{item.desc}</div>
+									</div>
+								);
+							})}
 					</Slider>
 				</div>
 				<div className="more" />
