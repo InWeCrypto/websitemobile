@@ -69,6 +69,7 @@ body {
 			.a {
 				color: @white;
 				margin: 0.05rem 0;
+				display: block;
 			}
 			.wallet-item {
 				background: @grey;
@@ -95,7 +96,9 @@ body {
 			text-align: center;
 		}
 		.twitter-cont {
-			height: 2rem;
+			height: 3rem;
+			overflow-y: auto;
+			overflow-x: hidden;
 		}
 	}
 	.box2 {
@@ -110,11 +113,13 @@ body {
 			padding: 0.1rem 0 0 0.1rem;
 		}
 		.moreinfo {
-			width: 0.25rem;
 			height: 0.25rem;
 			margin: 0 0.1rem 0.1rem 0;
 			display: inline-block;
 			color: @white;
+			img {
+				height: 100%;
+			}
 		}
 	}
 }

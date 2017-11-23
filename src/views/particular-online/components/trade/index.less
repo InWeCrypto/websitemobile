@@ -23,6 +23,20 @@
 			padding: 0.08rem 0;
 			box-sizing: border-box;
 			width: 0.6rem;
+			position: relative;
+			.checkbox {
+				position: absolute;
+				left: 0;
+				width: 100%;
+				top: 0.28rem;
+				z-index: 1;
+				background: @grey;
+				.check-item {
+					padding: 0.06rem 0;
+					display: block;
+					border-bottom: 0.01rem solid #fff;
+				}
+			}
 		}
 	}
 	.trade-data {

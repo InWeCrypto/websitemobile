@@ -1,68 +1,23 @@
 import "../lib/css/app.less";
 import React, { Component } from "react";
+import { createStore, applyMiddleware } from "redux";
+import { Provider, connect } from "react-redux";
 import ReactDOM from "react-dom";
 import { HashRouter as Router } from "react-router-dom";
-import CommonTitle from "../components/common-title/";
-import Banner from "./components/banner/";
-import News from "./components/news";
-import Project from "./components/project/";
+import reducers from "../../reducers/index/";
+import actions from "../../actions/index/";
+import AppComponent from "./components/app/";
 
-import { getData } from "../lib/js/app";
-import { requestUrl } from "../config/config";
+const store = createStore(
+	reducers,
+	window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
+);
 
-export default class AppComponent extends Component {
-	constructor() {
-		super();
-		this.state = {
-			banner: null,
-			neww: null
-		};
-	}
-	getBannerData() {
-		return new Promise((resolve, reject) => {
-			getData(`${requestUrl}/home/ad`).then(data => {
-				console.log(data);
-				if (data.code === 4000) {
-					this.setState({
-						banner: data.data.list
-					});
-				} else {
-					throw new Error(data.msg);
-				}
-			});
-		});
-	}
-	getNewsData() {
-		return new Promise((resolve, reject) => {
-			getData(`${requestUrl}/home/news`).then(data => {
-				if (data.code === 4000) {
-					this.setState({
-						news: data.data
-					});
-				} else {
-					throw new Error(data.msg);
-				}
-			});
-		});
-	}
-	componentWillMount() {
-		this.getBannerData();
-		this.getNewsData();
-	}
-	componentDidMount() {
-		document.title = "首页";
-	}
-	render() {
-		return (
-			<Router>
-				<div className="app">
-					<CommonTitle title="首页" />
-					<Banner bannerList={this.state.banner} />
-					<News newsList={this.state.news} />
-					<Project />
-				</div>
-			</Router>
-		);
-	}
-}
-ReactDOM.render(<AppComponent />, document.querySelector("#app"));
+ReactDOM.render(
+	<Provider store={store}>
+		<Router>
+			<AppComponent />
+		</Router>
+	</Provider>,
+	document.querySelector("#app")
+);

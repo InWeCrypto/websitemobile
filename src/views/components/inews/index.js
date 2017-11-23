@@ -5,41 +5,82 @@ export default class Inews extends Component {
 		super(props);
 	}
 	render() {
+		let { videoList, imgTxtList, inewsIndex, handClick } = this.props;
+		const curClass = idx => {
+			return idx === inewsIndex ? "inews-navbtn cur" : "inews-navbtn";
+		};
 		return (
 			<div className="inews">
 				<div className="inews-title">INEW报道</div>
 				<div className="inews-container">
 					<div className="inews-nav">
-						<div className="inews-navbox">
-							<span className="inews-navbtn">视频</span>
-							<span className="inews-navbtn cur">图文</span>
-						</div>
+						{videoList &&
+							imgTxtList &&
+							videoList.length > 0 &&
+							imgTxtList.length > 0 && (
+								<div className="inews-navbox">
+									<span
+										className={curClass(0)}
+										onClick={handClick.bind(this, 0)}
+									>
+										视频
+									</span>
+									<span
+										className={curClass(1)}
+										onClick={handClick.bind(this, 1)}
+									>
+										图文
+									</span>
+								</div>
+							)}
 					</div>
 					<div className="inews-list">
-						<div className="inews-item">
-							<div className="img-box">
-								<img src="" className="" />
-							</div>
-							<div className="inews-cont">
-								<div className="item-title">太极张三丰</div>
-								<div className="item-desc">是是是</div>
-								<div className="item-time">
-									2017-09-09 11:11:11
-								</div>
-							</div>
-						</div>
-						<div className="inews-item">
-							<div className="img-box">
-								<img src="" className="" />
-							</div>
-							<div className="inews-cont">
-								<div className="item-title">太极张三丰</div>
-								<div className="item-desc">是是是</div>
-								<div className="item-time">
-									2017-09-09 11:11:11
-								</div>
-							</div>
-						</div>
+						{inewsIndex == 0 &&
+							videoList &&
+							videoList.length > 0 &&
+							videoList.map((item, index) => {
+								return (
+									<a className="inews-item" key={index}>
+										<div className="img-box">
+											<img src="" className="" />
+										</div>
+										<div className="inews-cont">
+											<div className="item-title">
+												{item.title}
+											</div>
+											<div className="item-desc">
+												{item.desc}
+											</div>
+											<div className="item-time">
+												{item.created_at}
+											</div>
+										</div>
+									</a>
+								);
+							})}
+						{inewsIndex == 1 &&
+							imgTxtList &&
+							imgTxtList.length > 0 &&
+							imgTxtList.map((item, index) => {
+								return (
+									<a className="inews-item" key={index}>
+										<div className="img-box">
+											<img src={item.img} className="" />
+										</div>
+										<div className="inews-cont">
+											<div className="item-title">
+												{item.title}
+											</div>
+											<div className="item-desc">
+												{item.desc}
+											</div>
+											<div className="item-time">
+												{item.update}
+											</div>
+										</div>
+									</a>
+								);
+							})}
 					</div>
 				</div>
 			</div>

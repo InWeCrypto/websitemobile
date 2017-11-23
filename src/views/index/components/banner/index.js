@@ -2,9 +2,6 @@ import "./index.less";
 import React, { Component } from "react";
 import Slider from "react-slick";
 
-import { getData } from "../../../lib/js/app";
-import { requestUrl } from "../../../config/config";
-
 export default class Banner extends Component {
 	constructor(props) {
 		super(props);
