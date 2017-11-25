@@ -1,5 +1,6 @@
 export const GETBANNERDATA = "GETBANNERDATA";
 export const GETNEWSDATA = "GETNEWSDATA";
+export const GETPROJECTDATA = "GETPROJECTDATA";
 import { getData } from "../../views/lib/js/app";
 import { requestUrl } from "../../config/config";
 
@@ -42,7 +43,29 @@ const getNewsListAction = dispatch => () => {
 			console.log(e);
 		});
 };
+const projectList = data => {
+	return {
+		type: GETPROJECTDATA,
+		data
+	};
+};
+const getProjectListAction = dispatch => () => {
+	getData(`${requestUrl}/home/project`)
+		.then(res => {
+			console.log(res);
+			if (res.code === 4000) {
+				dispatch(projectList(res.data));
+			} else {
+				throw new Error(res.msg);
+			}
+		})
+		.catch(e => {
+			console.log(e);
+		});
+};
+
 export default {
 	getBannerListAction,
-	getNewsListAction
+	getNewsListAction,
+	getProjectListAction
 };

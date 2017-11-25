@@ -13,15 +13,16 @@ class AppComponent extends Component {
 		document.title = "首页";
 		this.props.getBannerListAction();
 		this.props.getNewsListAction();
+		this.props.getProjectListAction();
 	}
 	render() {
-		const { banner, news } = this.props;
+		const { bannerList, newsList, projectList } = this.props;
 		return (
 			<div className="app">
 				<CommonTitle title="首页" />
-				<Banner bannerList={banner} />
-				<News newsList={news} />
-				<Project />
+				<Banner bannerList={bannerList} />
+				<News newsList={newsList} />
+				<Project projectList={projectList} />
 			</div>
 		);
 	}
@@ -29,14 +30,15 @@ class AppComponent extends Component {
 const mapStateToProps = state => {
 	return {
 		bannerList: state.indexData.bannerList,
-		newsList: state.indexData.newsList
+		newsList: state.indexData.newsList,
+		projectList: state.indexData.projectList
 	};
 };
 const mapDispatchToProps = (dispatch, ownProps) => {
-	console.log(actions);
 	return {
 		getBannerListAction: actions.getBannerListAction(dispatch),
-		getNewsListAction: actions.getNewsListAction(dispatch)
+		getNewsListAction: actions.getNewsListAction(dispatch),
+		getProjectListAction: actions.getProjectListAction(dispatch)
 	};
 };
 export default connect(mapStateToProps, mapDispatchToProps)(AppComponent);
