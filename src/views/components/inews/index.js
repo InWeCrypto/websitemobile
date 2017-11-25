@@ -40,7 +40,11 @@ export default class Inews extends Component {
 							videoList.length > 0 &&
 							videoList.map((item, index) => {
 								return (
-									<a className="inews-item" key={index}>
+									<a
+										href={item.url}
+										className="inews-item"
+										key={index}
+									>
 										<div className="img-box">
 											<img src="" className="" />
 										</div>
@@ -63,7 +67,11 @@ export default class Inews extends Component {
 							imgTxtList.length > 0 &&
 							imgTxtList.map((item, index) => {
 								return (
-									<a className="inews-item" key={index}>
+									<a
+										href={item.url}
+										className="inews-item"
+										key={index}
+									>
 										<div className="img-box">
 											<img src={item.img} className="" />
 										</div>
