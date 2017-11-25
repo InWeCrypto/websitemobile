@@ -1,14 +1,13 @@
 import "../lib/css/app.less";
 import "./index.less";
 import React, { Component } from "react";
-//import { createStore, applyMiddleware } from "redux";
 import { createStore, combineReducers, applyMiddleware, compose } from "redux";
 import thunk from "redux-thunk";
 import { Provider, connect } from "react-redux";
 import ReactDOM from "react-dom";
 import { HashRouter as Router } from "react-router-dom";
-import reducers from "../../reducers/all-info-detail-page/";
-import actions from "../../actions/all-info-detail-page/";
+import reducers from "../../reducers/evaluating/";
+import actions from "../../actions/evaluating/";
 import AppComponent from "./components/app";
 const store = createStore(
 	reducers,

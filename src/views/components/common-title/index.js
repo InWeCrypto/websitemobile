@@ -43,7 +43,9 @@ export default class CommonTitle extends Component {
 							<a href="../all-info/#/" className="menu-item">
 								所有资讯
 							</a>
-							<a className="menu-item">Ico评测</a>
+							<a href="../evaluating/#/" className="menu-item">
+								Ico评测
+							</a>
 						</div>
 					)}
 				</div>
