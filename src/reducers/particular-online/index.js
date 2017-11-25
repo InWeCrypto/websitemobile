@@ -9,7 +9,9 @@ import {
 	DESCINDEX,
 	INEWSINDEX,
 	VIDEOLIST,
-	IMGTXTLIST
+	IMGTXTLIST,
+	DAYINDEX,
+	KLINEDATA
 } from "../../actions/particular-online/index";
 const initialState = {
 	id: null,
@@ -22,7 +24,9 @@ const initialState = {
 	descIndex: 0,
 	inewsIndex: null,
 	videoList: null,
-	imgTxtList: null
+	imgTxtList: null,
+	dayIndex: null,
+	klineData: null
 };
 const pageData = (state = initialState, action) => {
 	switch (action.type) {
@@ -65,6 +69,14 @@ const pageData = (state = initialState, action) => {
 		case "IMGTXTLIST":
 			return Object.assign({}, state, {
 				imgTxtList: action.data
+			});
+		case "DAYINDEX":
+			return Object.assign({}, state, {
+				dayIndex: action.data
+			});
+		case "KLINEDATA":
+			return Object.assign({}, state, {
+				klineData: action.data
 			});
 		default:
 			return state;

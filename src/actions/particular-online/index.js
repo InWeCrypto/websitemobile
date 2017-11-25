@@ -10,6 +10,8 @@ const DESCINDEX = "DESCINDEX";
 const INEWSINDEX = "INEWSINDEX";
 const VIDEOLIST = "VIDEOLIST";
 const IMGTXTLIST = "IMGTXTLIST";
+const DAYINDEX = "DAYINDEX";
+const KLINEDATA = "KLINEDATA";
 const totleData = data => {
 	return {
 		type: TOTLEDATA,
@@ -24,6 +26,7 @@ const getTotleDataAction = dispatch => data => {
 				dispatch(timePrice(0));
 				dispatch(marketIndex(0));
 				dispatch(inewsIndex(0));
+				dispatch(dayIndex(0));
 			} else {
 				throw new Error(res.msg);
 			}
@@ -156,6 +159,35 @@ const getImgTxtListAction = dispatch => data => {
 			console.log(e);
 		});
 };
+const dayIndex = data => {
+	return {
+		type: DAYINDEX,
+		data
+	};
+};
+const changeDayIndexAction = dispatch => data => {
+	dispatch(dayIndex(data));
+};
+const kData = data => {
+	return {
+		type: KLINEDATA,
+		data
+	};
+};
+
+const getKlineDataAction = dispatch => data => {
+	getData(`${requestUrl}/${data.url}/${data.start}/${data.end}/${data.len}`)
+		.then(res => {
+			if (res.code === 4000) {
+				dispatch(kData(res.data));
+			} else {
+				throw new Error(res.msg);
+			}
+		})
+		.catch(e => {
+			console.log(e);
+		});
+};
 export default {
 	getTotleDataAction,
 	changeTimePriceIndexAction,
@@ -166,5 +198,7 @@ export default {
 	changeDescIndex,
 	getVideoListAction,
 	getImgTxtListAction,
-	changeInewsIndex
+	changeInewsIndex,
+	changeDayIndexAction,
+	getKlineDataAction
 };
