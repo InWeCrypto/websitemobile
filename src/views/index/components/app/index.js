@@ -15,8 +15,7 @@ class AppComponent extends Component {
 		this.props.getNewsListAction();
 	}
 	render() {
-		const banner = this.props.bannerList;
-		const news = this.props.newsList;
+		const { banner, news } = this.props;
 		return (
 			<div className="app">
 				<CommonTitle title="首页" />
