@@ -68,7 +68,6 @@ export default class project extends Component {
 		let list1 = list.getList();
 		let keys = Object.keys(list1);
 		var newList = [];
-
 		data.map((item, index) => {
 			if (!list1[item.id]) {
 				return;
