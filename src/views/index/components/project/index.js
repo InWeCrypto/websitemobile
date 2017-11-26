@@ -89,13 +89,23 @@ export default class project extends Component {
 				list.remove(item.id);
 			}
 		});
-		newList.map(item => {
-			console.log(item.grid_type);
-		});
+		return newList;
+	}
+	setTypeClass(type) {
+		if (type == 1) {
+			return "item";
+		}
+		if (type == 2 || type == 3) {
+			return "item item1";
+		}
+		if (type == 4) {
+			return "item item2";
+		}
 	}
 	render() {
 		const { projectList } = this.props;
 		const listData = this.setData(projectList);
+
 		return (
 			<div className="project">
 				<div className="project-title">
@@ -104,12 +114,19 @@ export default class project extends Component {
 					<span className="line" />
 				</div>
 				<div className="project-box">
-					<div className="item">
-						<a href="./particular-online/#/?id=1">1</a>
-					</div>
-					<div className="item">1</div>
-					<div className="item item1">1</div>
-					<div className="item item2">1</div>
+					{listData &&
+						listData.map((item, index) => {
+							return (
+								<div
+									className={this.setTypeClass(
+										item.grid_type
+									)}
+									key={index}
+								>
+									<a href="./particular-online/#/?id=1">1</a>
+								</div>
+							);
+						})}
 				</div>
 			</div>
 		);
