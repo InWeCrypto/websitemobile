@@ -90,6 +90,11 @@ class AppComponent extends Component {
 		) {
 			$(this.refs.twitterbox).html(nextProps.totleData.desc);
 		}
+		if (nextProps.totleData.desc.length == 0) {
+			console.log(222);
+			this.refs.twitterContainer.style.display = "none";
+		}
+
 		if (
 			nextProps.time_price_index != null &&
 			(nextProps.time_price_index != this.props.time_price_index ||
@@ -651,16 +656,10 @@ class AppComponent extends Component {
 								</div>
 							)}
 					</div>
-					{totleData &&
-						totleData.desc && (
-							<div className="twitter">
-								<div className="twitter-title">Twitter</div>
-								<div
-									className="twitter-cont"
-									ref="twitterbox"
-								/>
-							</div>
-						)}
+					<div className="twitter" ref="twitterContainer">
+						<div className="twitter-title">Twitter</div>
+						<div className="twitter-cont" ref="twitterbox" />
+					</div>
 
 					{totleData &&
 						totleData.project_medias &&

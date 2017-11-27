@@ -1,9 +1,11 @@
 @import "../../../lib/css/base.less";
 .project {
+	background: @white;
 	.project-title {
+		padding-top: 10px;
 		font-size: 0.14rem;
 		text-align: center;
-		color: @grey1;
+		color: @grey;
 		.line {
 			vertical-align: middle;
 			display: inline-block;
@@ -18,13 +20,33 @@
 	}
 	.project-box {
 		box-sizing: border-box;
-		padding: 0.1rem 2vw;
+		padding: 0.1rem 5px;
+		display: flex;
+		flex-wrap: wrap;
 		.item {
 			width: 45vw;
 			height: 45vw;
-			//background: @orange;
-			float: left;
-			margin: 1.5vw;
+			display: flex;
+			overflow: hidden;
+			flex-wrap: wrap;
+			margin-bottom: 3px;
+			.big {
+				width: 100% !important;
+				height: 100% !important;
+				overflow: hidden;
+			}
+			.little {
+				width: 21.5vw;
+				height: 21.5vw;
+				overflow: hidden;
+				margin-bottom: 3px;
+				.img {
+					height: 10vw;
+				}
+			}
+			.little:nth-child(2n + 1) {
+				margin-right: 3px;
+			}
 			.a {
 				width: 100%;
 				height: 100%;
@@ -55,6 +77,9 @@
 			.img {
 				height: 25vw;
 			}
+		}
+		.item:nth-child(2n + 1) {
+			margin-right: 3px;
 		}
 	}
 	.slider {

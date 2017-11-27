@@ -19,7 +19,7 @@ class AppComponent extends Component {
 		const { bannerList, newsList, projectList } = this.props;
 		return (
 			<div className="app">
-				<CommonTitle title="首页" />
+				<CommonTitle isStation={false} />
 				<Banner bannerList={bannerList} />
 				<News newsList={newsList} />
 				<Project projectList={projectList} />

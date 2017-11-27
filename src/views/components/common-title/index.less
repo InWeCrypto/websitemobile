@@ -1,8 +1,18 @@
 @import "../../lib/css/base.less";
+.common-titlebox {
+	position: relative;
+	z-index: 10;
+	.common-titlebg {
+		height: 0.4rem;
+	}
+}
 .common-title {
 	height: 0.4rem;
-	background: @black;
-	position: relative;
+	background: none;
+	position: absolute;
+	left: 0;
+	top: 0;
+	width: 100%;
 	color: @grey1;
 	text-align: center;
 	.title-txt {

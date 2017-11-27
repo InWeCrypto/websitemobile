@@ -50,7 +50,7 @@ const projectList = data => {
 	};
 };
 const getProjectListAction = dispatch => () => {
-	getData(`${requestUrl}/home/project`)
+	getData(`${requestUrl}/home/project/is_mobile`)
 		.then(res => {
 			console.log(res);
 			if (res.code === 4000) {
