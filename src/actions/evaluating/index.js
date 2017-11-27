@@ -7,7 +7,7 @@ const ico = data => {
 		data
 	};
 };
-const getIcoAction = dispatch => {
+const getIcoAction = dispatch => data => {
 	getData(`${requestUrl}/article/ico`)
 		.then(res => {
 			if (res.code === 4000) {

@@ -18,6 +18,7 @@ class List extends Component {
 	}
 	componentDidMount() {
 		document.title = this.state.title;
+		this.props.getIcoAction();
 	}
 	render() {
 		const state = this.state;
