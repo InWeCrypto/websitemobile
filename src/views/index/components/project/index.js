@@ -95,10 +95,10 @@ export default class project extends Component {
 			return "item";
 		}
 		if (type == 2 || type == 3) {
-			return "item item1";
+			return "item item2";
 		}
 		if (type == 4) {
-			return "item item2";
+			return "item item1";
 		}
 	}
 	render() {
