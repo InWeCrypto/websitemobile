@@ -6,6 +6,7 @@ import thunk from "redux-thunk";
 import { Provider, connect } from "react-redux";
 import ReactDOM from "react-dom";
 import { HashRouter as Router } from "react-router-dom";
+
 import reducers from "../../reducers/evaluating/";
 import actions from "../../actions/evaluating/";
 import AppComponent from "./components/app";

@@ -2,7 +2,7 @@ import "../../../lib/css/app.less";
 import "./index.less";
 import React, { Component } from "react";
 import ReactDOM from "react-dom";
-import { HashRouter as Router, Link, Switch, Route } from "react-router-dom";
+import { Link, Switch, Route, withRouter } from "react-router-dom";
 
 import { connect } from "react-redux";
 
@@ -13,9 +13,9 @@ import List from "../list/";
 import Detail from "../detail/";
 
 class AppComponent extends Component {
-	constructor() {
-		super();
-
+	constructor(props) {
+		super(props);
+		console.log(props);
 		this.state = {
 			title: "ICO评测"
 		};
@@ -25,17 +25,15 @@ class AppComponent extends Component {
 	}
 	render() {
 		const state = this.state;
-		let { data } = this.props;
+		let { data, match } = this.props;
 		return (
-			<Router>
-				<div>
-					<CommonTitle title={state.title} />
-					<Switch>
-						<Route exact path="/" component={List} />
-						<Route path="/detail" component={Detail} />
-					</Switch>
-				</div>
-			</Router>
+			<div>
+				<CommonTitle title={state.title} />
+				<Switch>
+					<Route exact path="/" component={List} />
+					<Route path="/detail" component={Detail} />
+				</Switch>
+			</div>
 		);
 	}
 }
@@ -50,4 +48,6 @@ const mapDispatchToProps = (dispatch, ownProps) => {
 		getIcoAction: actions.getIcoAction(dispatch)
 	};
 };
-export default connect(mapStateToProps, mapDispatchToProps)(AppComponent);
+export default withRouter(
+	connect(mapStateToProps, mapDispatchToProps)(AppComponent)
+);

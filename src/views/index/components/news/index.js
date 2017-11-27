@@ -28,12 +28,16 @@ export default class News extends Component {
 							news.length > 0 &&
 							news.map((item, index) => {
 								return (
-									<div className="cont" key={index}>
+									<a
+										href={item.url}
+										className="cont"
+										key={index}
+									>
 										<div className="title">
 											{item.title}
 										</div>
 										<div className="intro">{item.desc}</div>
-									</div>
+									</a>
 								);
 							})}
 					</Slider>

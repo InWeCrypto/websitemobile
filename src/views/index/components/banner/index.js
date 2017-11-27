@@ -29,7 +29,9 @@ export default class Banner extends Component {
 						banner.map((item, index) => {
 							return (
 								<div key={index}>
-									<img src={item.img} />
+									<a href={item.url}>
+										<img src={item.img} />
+									</a>
 								</div>
 							);
 						})}

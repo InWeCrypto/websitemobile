@@ -1,16 +1,14 @@
 import "./index.less";
 import React, { Component } from "react";
 import { connect } from "react-redux";
+import { withRouter } from "react-router-dom";
 import echarts from "echarts";
 import actions from "../../../../actions/evaluating/";
 // import $ from 'jquery'
 
-let arr = window.location.hash.split("");
-let locationId = arr[arr.length - 1];
 class Detail extends Component {
 	componentDidUpdate() {
 		let strcture = this.refs.strcture;
-		console.log(strcture);
 		let myChart = echarts.init(strcture);
 		let strctureData = this.props.data.ico_assess_structure;
 		let value = [];
@@ -242,9 +240,11 @@ const mapStateToProps = state => {
 };
 
 const mapDispatchToProps = (dispatch, ownProps) => {
+	let arr = window.location.hash.split("");
+	let locationId = arr[arr.length - 1];
 	return {
 		getIcoDetailAction: actions.getIcoDetailAction(dispatch, locationId)
 	};
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(Detail);
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(Detail));

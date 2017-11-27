@@ -85,8 +85,9 @@ class AppComponent extends Component {
 			$(this.refs.twitterbox).html(nextProps.totleData.desc);
 		}
 		if (
-			nextProps.time_price_index != this.props.time_price_index ||
-			nextProps.dayIndex != this.props.dayIndex
+			nextProps.time_price_index &&
+			(nextProps.time_price_index != this.props.time_price_index ||
+				nextProps.dayIndex != this.props.dayIndex)
 		) {
 			let time = this.getTime(nextProps.dayIndex);
 			if (!time) {
@@ -510,42 +511,58 @@ class AppComponent extends Component {
 						</div>
 						<div className="chart" ref="chart" />
 					</div>
-					<div className="trade-box">
-						<Trade />
-					</div>
-					<div className="intro-box">
-						<div className="intro-nav">
-							{totleData &&
-								totleData.project_desc &&
-								totleData.project_desc.length > 0 &&
-								totleData.project_desc.map((item, index) => {
-									return (
-										<div
-											key={index}
-											className={this.setDescCur(index)}
-											onClick={this.changeDescClick.bind(
-												this,
-												index
-											)}
-										>
-											{item.title}
-										</div>
-									);
-								})}
-						</div>
-						<iframe
-							src={
-								totleData
-									? requestUrl +
-										"/article/" +
+					{totleData &&
+						totleData.marketlist && (
+							<div className="trade-box">
+								<Trade />
+							</div>
+						)}
+					{totleData &&
+						totleData.project_desc &&
+						totleData.project_desc.length > 0 && (
+							<div className="intro-box">
+								<div className="intro-nav">
+									{totleData &&
+										totleData.project_desc &&
+										totleData.project_desc.length > 0 &&
+										totleData.project_desc.map(
+											(item, index) => {
+												return (
+													<div
+														key={index}
+														className={this.setDescCur(
+															index
+														)}
+														onClick={this.changeDescClick.bind(
+															this,
+															index
+														)}
+													>
+														{item.title}
+													</div>
+												);
+											}
+										)}
+								</div>
+								<iframe
+									src={
+										totleData &&
+										totleData.project_desc &&
 										totleData.project_desc[
 											this.props.descIndex
-										].id
-									: ""
-							}
-							className="intro-cont"
-						/>
-					</div>
+										]
+											? requestUrl +
+												"/article/" +
+												totleData.project_desc[
+													this.props.descIndex
+												].id
+											: ""
+									}
+									className="intro-cont"
+								/>
+							</div>
+						)}
+
 					{((videoList && videoList.length > 0) ||
 						(imgTxtList && imgTxtList.length > 0)) && (
 						<div className="news-box">
@@ -603,6 +620,7 @@ class AppComponent extends Component {
 														key={index}
 														className="wallet-item"
 														href={item.url}
+														target="_blank"
 													>
 														{item.name}
 													</a>
@@ -613,10 +631,17 @@ class AppComponent extends Component {
 								</div>
 							)}
 					</div>
-					<div className="twitter">
-						<div className="twitter-title">Twitter</div>
-						<div className="twitter-cont" ref="twitterbox" />
-					</div>
+					{totleData &&
+						totleData.desc && (
+							<div className="twitter">
+								<div className="twitter-title">Twitter</div>
+								<div
+									className="twitter-cont"
+									ref="twitterbox"
+								/>
+							</div>
+						)}
+
 					{totleData &&
 						totleData.project_medias &&
 						totleData.project_medias.length0 && (

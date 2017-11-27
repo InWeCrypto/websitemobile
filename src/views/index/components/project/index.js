@@ -104,7 +104,6 @@ export default class project extends Component {
 	render() {
 		const { projectList } = this.props;
 		const listData = this.setData(projectList);
-		console.log(listData);
 		return (
 			<div className="project">
 				<div className="project-title">

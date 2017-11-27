@@ -9,10 +9,14 @@ class Trade extends Component {
 	}
 	componentWillReceiveProps(nextProps) {
 		if (nextProps.marketindex != this.props.marketindex) {
-			console.log(this.props.marketlist[nextProps.marketindex].url);
-			this.props.getMarketDataAction({
-				url: this.props.marketlist[nextProps.marketindex].url
-			});
+			if (
+				this.props.marketlist[nextProps.marketindex] &&
+				this.props.marketlist[nextProps.marketindex]
+			) {
+				this.props.getMarketDataAction({
+					url: this.props.marketlist[nextProps.marketindex].url
+				});
+			}
 		}
 	}
 	changeIndex(idx) {
