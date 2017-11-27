@@ -26,33 +26,40 @@ class AppComponent extends Component {
 		if (type == null) {
 			return;
 		}
-		const now = parseInt(new Date().getTime() / 1000);
-		let start;
-		let day = 24 * 60 * 60;
+		let timeType;
 		switch (type) {
 			case 0:
-				start = now - 5 * 60 * 1000;
+				timeType = "1m";
 				break;
 			case 1:
-				start = now - 6 * 60 * 60 * 1000;
+				timeType = "5m";
 				break;
 			case 2:
-				start = now - day * 1 * 1000;
+				timeType = "15m";
 				break;
 			case 3:
-				start = now - day * 7 * 1000;
+				timeType = "30m";
 				break;
 			case 4:
-				start = now - day * 30 * 1000;
+				timeType = "1h";
+				break;
+			case 5:
+				timeType = "2h";
+				break;
+			case 6:
+				timeType = "4h";
+				break;
+			case 7:
+				timeType = "6h";
+				break;
+			case 8:
+				timeType = "1d";
+				break;
+			case 9:
+				timeType = "1w";
 				break;
 		}
-		start = start <= 0 ? 0 : start;
-		start = start.toString().length < 10 ? 0 : start;
-		let res = {
-			start: start,
-			end: now
-		};
-		return res;
+		return timeType;
 	}
 	setDescCur(idx) {
 		return idx === this.props.descIndex
@@ -91,8 +98,7 @@ class AppComponent extends Component {
 					nextProps.totleData.project_time_prices[
 						nextProps.time_price_index
 					].k_line_data_url,
-				start: time.start,
-				end: time.end,
+				timeType: time,
 				len: 10
 			};
 			this.props.getKlineDataAction(data);
@@ -326,7 +332,7 @@ class AppComponent extends Component {
 				{
 					type: "inside",
 					xAxisIndex: [0, 1],
-					start: 0,
+					start: 90,
 					end: 100
 				},
 				{
@@ -334,7 +340,7 @@ class AppComponent extends Component {
 					xAxisIndex: [0, 1],
 					type: "slider",
 					top: "85%",
-					start: 0,
+					start: 90,
 					end: 100
 				}
 			],
@@ -443,25 +449,61 @@ class AppComponent extends Component {
 								className={this.setKColor(0)}
 								onClick={this.changeTime.bind(this, 0)}
 							>
-								5m
+								1m
 							</span>
 							<span
 								className={this.setKColor(1)}
 								onClick={this.changeTime.bind(this, 1)}
 							>
-								1d
+								5m
 							</span>
 							<span
 								className={this.setKColor(2)}
 								onClick={this.changeTime.bind(this, 2)}
 							>
-								7d
+								15m
 							</span>
 							<span
 								className={this.setKColor(3)}
 								onClick={this.changeTime.bind(this, 3)}
 							>
-								30d
+								30m
+							</span>
+							<span
+								className={this.setKColor(4)}
+								onClick={this.changeTime.bind(this, 4)}
+							>
+								1h
+							</span>
+							<span
+								className={this.setKColor(5)}
+								onClick={this.changeTime.bind(this, 5)}
+							>
+								2h
+							</span>
+							<span
+								className={this.setKColor(6)}
+								onClick={this.changeTime.bind(this, 6)}
+							>
+								4h
+							</span>
+							<span
+								className={this.setKColor(7)}
+								onClick={this.changeTime.bind(this, 7)}
+							>
+								6h
+							</span>
+							<span
+								className={this.setKColor(8)}
+								onClick={this.changeTime.bind(this, 8)}
+							>
+								1d
+							</span>
+							<span
+								className={this.setKColor(9)}
+								onClick={this.changeTime.bind(this, 9)}
+							>
+								1w
 							</span>
 						</div>
 						<div className="chart" ref="chart" />

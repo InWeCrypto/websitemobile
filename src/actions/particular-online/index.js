@@ -176,7 +176,7 @@ const kData = data => {
 };
 
 const getKlineDataAction = dispatch => data => {
-	getData(`${requestUrl}/${data.url}/${data.start}/${data.end}/${data.len}`)
+	getData(`${requestUrl}/${data.url}/${data.timeType}/${data.len}`)
 		.then(res => {
 			if (res.code === 4000) {
 				dispatch(kData(res.data));
