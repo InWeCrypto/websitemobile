@@ -18,8 +18,8 @@ const totleData = data => {
 		data
 	};
 };
-const getTotleDataAction = dispatch => data => {
-	getData(`${requestUrl}/project/` + data.id)
+const getTotleDataAction = (dispatch, id) => {
+	getData(`${requestUrl}/project/${id}`)
 		.then(res => {
 			if (res.code === 4000) {
 				dispatch(totleData(res.data));
