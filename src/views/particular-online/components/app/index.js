@@ -11,15 +11,17 @@ import Trade from "../trade/";
 import Inews from "../../../components/inews/";
 import { requestUrl } from "../../../../config/config";
 
+const locationId = window.location.hash.split("=")[1];
+
 class AppComponent extends Component {
 	constructor(props) {
 		super(props);
 	}
-	async componentWillMount() {
-		let query = window.util.getQuery(window.location.href);
-		document.title = "项目详情";
-		await this.props.getTotleDataAction({ id: query.id });
-	}
+	// async componentWillMount() {
+	// 	let query = window.util.getQuery(window.location.href);
+	// 	document.title = "项目详情";
+	// 	await this.props.getTotleDataAction({ id: query.id });
+	// }
 
 	getTime(type) {
 		if (type == null) {
@@ -684,9 +686,9 @@ const mapStateToProps = state => {
 	};
 };
 const mapDispatchToProps = (dispatch, ownProps) => {
-	console.log(actions);
+	// console.log(locationId);
 	return {
-		getTotleDataAction: actions.getTotleDataAction(dispatch),
+		getTotleDataAction: actions.getTotleDataAction(dispatch, locationId),
 		changeDescIndex: actions.changeDescIndex(dispatch),
 		getVideoListAction: actions.getVideoListAction(dispatch),
 		getImgTxtListAction: actions.getImgTxtListAction(dispatch),

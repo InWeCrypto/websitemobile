@@ -1,5 +1,7 @@
 import "./index.less";
 import React, { Component } from "react";
+import Slider from "react-slick";
+import pic from "../../../lib/img/menubtn.png";
 
 class ChainList {
 	constructor() {
@@ -104,6 +106,15 @@ export default class project extends Component {
 	render() {
 		const { projectList } = this.props;
 		const listData = this.setData(projectList);
+		let settings = {
+			dots: false,
+			infinite: true,
+			autoplay: true,
+			speed: 500,
+			autoplaySpend: 100,
+			slidesToShow: 1,
+			slidesToScroll: 1
+		};
 		return (
 			<div className="project">
 				<div className="project-title">
@@ -121,6 +132,68 @@ export default class project extends Component {
 									)}
 									key={index}
 								>
+									{/* 轮播图 */}
+									{item.type === 2 && (
+										<div className="slider">
+											<Slider {...settings}>
+												{item.carousels &&
+													item.carousels.length > 0 &&
+													item.carousels.map(
+														(item, index) => {
+															return (
+																<div
+																	key={
+																		item.id
+																	}
+																>
+																	<a className="item-link">
+																		<img
+																			src={
+																				item.img
+																			}
+																		/>
+																	</a>
+																	<div className="slideControl">
+																		{
+																			item.title
+																		}
+																	</div>
+																</div>
+															);
+														}
+													)}
+											</Slider>
+										</div>
+									)}
+									{item.type === 4 && (
+										<div className="slider slider-video">
+											<Slider {...settings}>
+												{/* {item.videos &&
+													// item.videos.length > 0 &&
+													item.videos.map(
+														(item, index) => {
+															return ( */}
+												<div
+												// key={
+												// 	item.id
+												// }
+												>
+													<a className="item-link">
+														<img src="http://whalewallet.oss-cn-hongkong.aliyuncs.com/ads/banner2.png" />
+													</a>
+													<div className="slideControl">
+														{/* {
+																			item.title
+																		} */}
+														视频轮播
+													</div>
+												</div>
+												{/* );
+														}
+													)} */}
+											</Slider>
+										</div>
+									)}
 									<a
 										className="a"
 										href={
@@ -129,6 +202,9 @@ export default class project extends Component {
 										}
 									>
 										<img className="img" src={item.img} />
+										<span className="en-name">
+											{item.en_name}
+										</span>
 									</a>
 								</div>
 							);
