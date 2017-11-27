@@ -428,6 +428,9 @@ class AppComponent extends Component {
 	changeTime(idx) {
 		this.props.changeDayIndexAction(idx);
 	}
+	setboxClass(isAll) {
+		return isAll ? "box1" : "box1 one";
+	}
 	render() {
 		const { totleData, videoList, inewsIndex, imgTxtList } = this.props;
 		return (
@@ -555,7 +558,15 @@ class AppComponent extends Component {
 						</div>
 					)}
 
-					<div className="box1">
+					<div
+						className={this.setboxClass(
+							totleData &&
+								totleData.project_explorers &&
+								totleData.project_wallets &&
+								totleData.project_explorers.length > 0 &&
+								totleData.project_wallets.length > 0
+						)}
+					>
 						{totleData &&
 							totleData.project_explorers &&
 							totleData.project_explorers.length > 0 && (
