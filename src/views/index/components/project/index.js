@@ -104,7 +104,7 @@ export default class project extends Component {
 	render() {
 		const { projectList } = this.props;
 		const listData = this.setData(projectList);
-
+		console.log(listData);
 		return (
 			<div className="project">
 				<div className="project-title">
@@ -122,10 +122,19 @@ export default class project extends Component {
 									)}
 									key={index}
 								>
-									<a href="./particular-online/#/?id=1">1</a>
+									<a
+										className="a"
+										href={
+											"./particular-online/#/?id=" +
+											item.id
+										}
+									>
+										<img className="img" src={item.img} />
+									</a>
 								</div>
 							);
 						})}
+					<div className="clearfix" />
 				</div>
 			</div>
 		);

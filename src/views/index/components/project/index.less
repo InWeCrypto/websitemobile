@@ -25,19 +25,32 @@
 			background: @orange;
 			float: left;
 			margin: 1.5vw;
-			color: @white;
-			text-align: center;
-			display: flex;
-			align-items: center;
-			justify-content: center;
+			.a {
+				width: 100%;
+				height: 100%;
+				display: flex;
+				align-items: center;
+				justify-content: center;
+				color: @white;
+				text-align: center;
+			}
+			.img {
+				height: 25vw;
+			}
 		}
 		.item.item1 {
 			width: 93vw;
 			height: 93vw;
+			.img {
+				height: 45vw;
+			}
 		}
 		.item.item2 {
 			width: 93vw;
 			height: 45vw;
+			.img {
+				height: 25vw;
+			}
 		}
 	}
 }
