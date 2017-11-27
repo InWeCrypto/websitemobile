@@ -9,7 +9,7 @@ class RealTime extends Component {
 	}
 	componentWillReceiveProps(nextProps) {
 		if (nextProps.time_price_index != this.props.time_price_index) {
-			if (nextProps.time_price_index) {
+			if (nextProps.time_price_index != null) {
 				this.props.getTimePriceDataAction({
 					url: this.props.time_price[nextProps.time_price_index]
 						.current_url

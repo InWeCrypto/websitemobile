@@ -3,7 +3,7 @@ import "./index.less";
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import $ from "jquery";
-import echarts from "echarts";
+import echarts, { disConnect } from "echarts";
 import actions from "../../../../actions/particular-online/";
 import CommonTitle from "../../../components/common-title/";
 import RealTime from "../realtime/";
@@ -11,17 +11,17 @@ import Trade from "../trade/";
 import Inews from "../../../components/inews/";
 import { requestUrl } from "../../../../config/config";
 
-const locationId = window.location.hash.split("=")[1];
+//const locationId = window.location.hash.split("=")[1];
 
 class AppComponent extends Component {
 	constructor(props) {
 		super(props);
 	}
-	// async componentWillMount() {
-	// 	let query = window.util.getQuery(window.location.href);
-	// 	document.title = "项目详情";
-	// 	await this.props.getTotleDataAction({ id: query.id });
-	// }
+	async componentWillMount() {
+		let query = window.util.getQuery(window.location.href);
+		document.title = "项目详情";
+		await this.props.getTotleDataAction({ id: query.id });
+	}
 
 	getTime(type) {
 		if (type == null) {
@@ -70,6 +70,10 @@ class AppComponent extends Component {
 	changeDescClick(idx) {
 		this.props.changeDescIndex(idx);
 	}
+	setIframe(url) {
+		let iframeBox = this.refs.iframebox;
+		$(iframeBox).html(`<iframe src="${url}" class="intro-cont"/>`);
+	}
 	componentWillReceiveProps(nextProps) {
 		if (nextProps.inewsIndex != this.props.inewsIndex) {
 			if (nextProps.inewsIndex == 0) {
@@ -87,7 +91,7 @@ class AppComponent extends Component {
 			$(this.refs.twitterbox).html(nextProps.totleData.desc);
 		}
 		if (
-			nextProps.time_price_index &&
+			nextProps.time_price_index != null &&
 			(nextProps.time_price_index != this.props.time_price_index ||
 				nextProps.dayIndex != this.props.dayIndex)
 		) {
@@ -109,6 +113,17 @@ class AppComponent extends Component {
 			console.log(11);
 			this.viewEcharts(nextProps.klineData);
 		}
+	}
+	componentWillUpdate() {
+		this.setIframe(
+			this.props.totleData &&
+			this.props.totleData.project_desc &&
+			this.props.totleData.project_desc[this.props.descIndex]
+				? requestUrl +
+					"/article/" +
+					this.props.totleData.project_desc[this.props.descIndex].id
+				: ""
+		);
 	}
 	setOptionData(data) {
 		if (!(data instanceof Array)) {
@@ -436,6 +451,7 @@ class AppComponent extends Component {
 	}
 	render() {
 		const { totleData, videoList, inewsIndex, imgTxtList } = this.props;
+
 		return (
 			<div className="particular-online">
 				<CommonTitle title="项目详情" />
@@ -546,22 +562,24 @@ class AppComponent extends Component {
 											}
 										)}
 								</div>
-								<iframe
-									src={
-										totleData &&
-										totleData.project_desc &&
-										totleData.project_desc[
-											this.props.descIndex
-										]
-											? requestUrl +
-												"/article/" +
-												totleData.project_desc[
-													this.props.descIndex
-												].id
-											: ""
-									}
-									className="intro-cont"
-								/>
+								<div ref="iframebox">
+									<iframe
+										src={
+											totleData &&
+											totleData.project_desc &&
+											totleData.project_desc[
+												this.props.descIndex
+											]
+												? requestUrl +
+													"/article/" +
+													totleData.project_desc[
+														this.props.descIndex
+													].id
+												: ""
+										}
+										className="intro-cont"
+									/>
+								</div>
 							</div>
 						)}
 
@@ -688,7 +706,7 @@ const mapStateToProps = state => {
 const mapDispatchToProps = (dispatch, ownProps) => {
 	// console.log(locationId);
 	return {
-		getTotleDataAction: actions.getTotleDataAction(dispatch, locationId),
+		getTotleDataAction: actions.getTotleDataAction(dispatch),
 		changeDescIndex: actions.changeDescIndex(dispatch),
 		getVideoListAction: actions.getVideoListAction(dispatch),
 		getImgTxtListAction: actions.getImgTxtListAction(dispatch),
