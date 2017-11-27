@@ -10,7 +10,6 @@ import RealTime from "../realtime/";
 import Trade from "../trade/";
 import Inews from "../../../components/inews/";
 import { requestUrl } from "../../../../config/config";
-//import { disconnect } from "cluster";
 
 class AppComponent extends Component {
 	constructor(props) {
