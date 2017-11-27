@@ -134,7 +134,10 @@ export default class project extends Component {
 								>
 									{/* 轮播图 */}
 									{item.type === 2 && (
-										<div className="slider">
+										<div
+											className="slider"
+											style={{ background: item.color }}
+										>
 											<Slider {...settings}>
 												{item.carousels &&
 													item.carousels.length > 0 &&
@@ -165,6 +168,7 @@ export default class project extends Component {
 											</Slider>
 										</div>
 									)}
+									{/* 视频轮播 */}
 									{item.type === 4 && (
 										<div className="slider slider-video">
 											<Slider {...settings}>
@@ -179,7 +183,9 @@ export default class project extends Component {
 												// }
 												>
 													<a className="item-link">
-														<img src="http://whalewallet.oss-cn-hongkong.aliyuncs.com/ads/banner2.png" />
+														{/* src={item.img} */}
+														<img src="http://whalewallet.oss-cn-hongkong.aliyuncs.com/ads/banner2.png" />{" "}
+														{/* 测试数据，有了数据就把上下注释去除即可 */}
 													</a>
 													<div className="slideControl">
 														{/* {
@@ -194,18 +200,28 @@ export default class project extends Component {
 											</Slider>
 										</div>
 									)}
-									<a
-										className="a"
-										href={
-											"./particular-online/#/?id=" +
-											item.id
-										}
-									>
-										<img className="img" src={item.img} />
-										<span className="en-name">
-											{item.en_name}
-										</span>
-									</a>
+									{/* 其他 */}
+									{item.type !== 4 &&
+										item.type !== 2 && (
+											<a
+												className="a"
+												href={
+													"./particular-online/#/?id=" +
+													item.id
+												}
+												style={{
+													background: item.color
+												}}
+											>
+												<img
+													className="img"
+													src={item.img}
+												/>
+												<span className="en-name">
+													{item.en_name}
+												</span>
+											</a>
+										)}
 								</div>
 							);
 						})}
