@@ -1,0 +1,62 @@
+@import "../../lib/css/base.less";
+
+.common-search {
+	position: fixed;
+	left: 0;
+	top: 0;
+	right: 0;
+	bottom: 0;
+	background: @white;
+	z-index: 11;
+	.search-box {
+		display: flex;
+		align-items: center;
+		box-sizing: border-box;
+		padding: 0.1rem 0 0.1em 0.1rem;
+		.search-txt {
+			height: 0.32rem;
+			border: 0.01rem solid #999;
+			box-sizing: border-box;
+			flex: 1;
+			border-radius: 0.16rem;
+			overflow: hidden;
+			//background: @grey3;
+			input {
+				width: 100%;
+				height: 100%;
+				outline: none;
+				border: none;
+				box-sizing: border-box;
+				padding: 0 0.16rem;
+				background: none;
+			}
+		}
+		.searchbtn {
+			margin: 0 0.05rem;
+			color: @red;
+			background: none;
+		}
+	}
+	.search-list {
+		padding: 0 0.1rem;
+		.search-item {
+			padding: 0.1rem 0;
+			position: relative;
+			display: block;
+			overflow: hidden;
+			text-overflow: ellipsis;
+			white-space: nowrap;
+			color: @black;
+		}
+		.search-item:after {
+			content: "";
+			position: absolute;
+			left: 0;
+			bottom: 0;
+			width: 100%;
+			height: 0;
+			border-bottom: 0.01rem solid #999;
+			transform: scaleY(0.5);
+		}
+	}
+}

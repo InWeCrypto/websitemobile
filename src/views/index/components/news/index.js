@@ -23,7 +23,17 @@ export default class News extends Component {
 			<div className="news-box">
 				<div className="title">News</div>
 				<div className="news">
-					<Slider {...settings}>
+					{news &&
+						news.map((item, index) => {
+							return (
+								<a key={index} className="a" href={item.url}>
+									<span className="circle" />
+									<span className="txt">{item.title}</span>
+								</a>
+							);
+						})}
+
+					{/* <Slider {...settings}>
 						{news &&
 							news.length > 0 &&
 							news.map((item, index) => {
@@ -40,9 +50,9 @@ export default class News extends Component {
 									</a>
 								);
 							})}
-					</Slider>
+					</Slider> */}
 				</div>
-				<div className="more" />
+				{/* <div className="more" /> */}
 			</div>
 		);
 	}
