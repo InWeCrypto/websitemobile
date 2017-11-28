@@ -9,14 +9,20 @@ import reducers from "../../reducers/index/";
 import actions from "../../actions/index/";
 import AppComponent from "./components/app/";
 
-const store = createStore(
-	reducers,
-	compose(
-		applyMiddleware(thunk),
-		window.__REDUX_DEVTOOLS_EXTENSION__ &&
-			window.__REDUX_DEVTOOLS_EXTENSION__()
-	)
-);
+let store;
+if (window.__REDUX_DEVTOOLS_EXTENSION__) {
+	store = createStore(
+		reducers,
+		compose(
+			applyMiddleware(thunk),
+			window.__REDUX_DEVTOOLS_EXTENSION__
+				? window.__REDUX_DEVTOOLS_EXTENSION__()
+				: () => {}
+		)
+	);
+} else {
+	store = createStore(reducers, applyMiddleware(thunk));
+}
 
 ReactDOM.render(
 	<Provider store={store}>

@@ -8,14 +8,21 @@ import reducers from "../../reducers/particular-online/";
 import actions from "../../actions/particular-online/";
 import AppComponent from "./components/app/";
 import thunk from "redux-thunk";
-const store = createStore(
-	reducers,
-	compose(
-		applyMiddleware(thunk),
-		window.__REDUX_DEVTOOLS_EXTENSION__ &&
-			window.__REDUX_DEVTOOLS_EXTENSION__()
-	)
-);
+let store;
+if (window.__REDUX_DEVTOOLS_EXTENSION__) {
+	store = createStore(
+		reducers,
+		compose(
+			applyMiddleware(thunk),
+			window.__REDUX_DEVTOOLS_EXTENSION__
+				? window.__REDUX_DEVTOOLS_EXTENSION__()
+				: () => {}
+		)
+	);
+} else {
+	store = createStore(reducers, applyMiddleware(thunk));
+}
+
 ReactDOM.render(
 	<Provider store={store}>
 		<Router>
