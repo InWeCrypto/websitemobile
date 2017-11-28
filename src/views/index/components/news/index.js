@@ -25,6 +25,7 @@ export default class News extends Component {
 				<div className="news">
 					{news &&
 						news.map((item, index) => {
+							if (index >= 2) return null;
 							return (
 								<a key={index} className="a" href={item.url}>
 									<span className="circle" />

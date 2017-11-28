@@ -276,6 +276,28 @@ export default class project extends Component {
 																		item.color
 																}}
 															>
+																{item.type ==
+																	5 && (
+																	<span className="lefttop" />
+																)}
+																{item.type ==
+																	6 && (
+																	<span className="lefttop">
+																		Upcoming
+																	</span>
+																)}
+																{item.type ==
+																	7 && (
+																	<span className="lefttop">
+																		ACTIVE
+																	</span>
+																)}
+																{item.type ==
+																	8 && (
+																	<span className="lefttop">
+																		Upcoming
+																	</span>
+																)}
 																<img
 																	className="img"
 																	src={

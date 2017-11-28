@@ -7,7 +7,7 @@ export default class CommonTitle extends Component {
 		super(props);
 		this.state = {
 			title: props.title ? props.title : "",
-			isStation: props.isStation ? props.isStation : true,
+			isStation: props.isStation != undefined ? props.isStation : true,
 			showMore: false,
 			showReturn: props.showReturn ? props.showReturn : false,
 			showSearch: false
@@ -29,14 +29,29 @@ export default class CommonTitle extends Component {
 		this.setState({
 			showSearch: true
 		});
+		window.history.pushState({ id: "search" }, "", "#search");
 	}
 	closeSearch() {
 		this.setState({
 			showSearch: false
 		});
+		window.history.go(-1);
 	}
 	returnClick() {
 		window.history.go(-1);
+	}
+	componentDidMount() {
+		window.addEventListener(
+			"popstate",
+			state => {
+				if (this.state.showSearch && state.id != "search") {
+					this.setState({
+						showSearch: false
+					});
+				}
+			},
+			false
+		);
 	}
 	render() {
 		const state = this.state;
