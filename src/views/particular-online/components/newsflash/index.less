@@ -1,0 +1,36 @@
+@import "../../../lib/css/base.less";
+.newsflash {
+	display: flex;
+	align-items: center;
+	background: @white;
+	color: @black;
+	height: 0.47rem;
+	.newsflash_title {
+		background: @orange;
+		color: @white;
+		width: 0.47rem;
+		height: 100%;
+		text-align: center;
+		padding-top: 0.13rem;
+		box-sizing: border-box;
+		margin-right: 0.1rem;
+	}
+	.newsflash_cont {
+		flex: 1;
+		overflow: hidden;
+		text-overflow: ellipsis;
+		white-space: nowrap;
+		.circle {
+			width: 0.08rem;
+			height: 0.08rem;
+			background: @orange;
+			display: inline-block;
+			vertical-align: middle;
+			border-radius: 50%;
+			margin-right: 0.1rem;
+		}
+		.txt {
+			vertical-align: middle;
+		}
+	}
+}

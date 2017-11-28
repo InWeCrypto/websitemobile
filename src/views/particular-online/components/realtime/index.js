@@ -8,119 +8,142 @@ class RealTime extends Component {
 		super(props);
 	}
 	componentWillReceiveProps(nextProps) {
-		if (nextProps.time_price_index != this.props.time_price_index) {
-			if (nextProps.time_price_index != null) {
+		if (nextProps.time_price != this.props.time_price) {
+			nextProps.time_price.map((item, idx) => {
 				this.props.getTimePriceDataAction({
-					url: this.props.time_price[nextProps.time_price_index]
-						.current_url
+					url: item.current_url,
+					type: item.name
 				});
-			}
+			});
 		}
 	}
-	changeIndex(idx) {
-		this.props.changeTimePriceIndexAction(idx);
+	setFixed(num) {
+		let r = (num - 1 + 1).toFixed(4);
+		return r;
 	}
 	render() {
 		const { time_price, time_price_data } = this.props;
-		const setCur = idx => {
-			if (idx == this.props.time_price_index) {
-				return "navbtn cur";
-			} else {
-				return "navbtn";
-			}
-		};
-		const setcolor = str => {
-			if (str.toString().indexOf("-") != -1) {
-				return "value down";
-			} else {
-				return "value up";
-			}
-		};
+		const name = [];
+		if (time_price) {
+			time_price.map(item => {
+				name.push(item.name);
+			});
+		}
+
 		return (
 			<div className="realtime-box">
-				<div className="nav">
-					<div className="nav-box">
-						{time_price &&
-							time_price.length > 0 &&
-							time_price.map((item, index) => {
-								return (
-									<span
-										key={index}
-										onClick={this.changeIndex.bind(
-											this,
-											index
+				<div className="realtime-box1">
+					{name &&
+						time_price_data &&
+						name.length > 0 &&
+						name.map((item, index) => {
+							return (
+								<span key={index}>
+									{time_price_data[item] &&
+										this.setFixed(
+											time_price_data[item].price
 										)}
-										className={setCur(index)}
-									>
-										{item.name}
+									{time_price_data[name[index + 1]] &&
+										index < name.length - 1 && (
+											<span>/</span>
+										)}
+								</span>
+							);
+						})}
+				</div>
+				<div className="change">
+					{name &&
+						time_price_data &&
+						name.length > 0 &&
+						name.map((item, index) => {
+							return (
+								<span key={index}>
+									{time_price_data[item] &&
+										time_price_data[item]["24h_change"]}
+									{time_price_data[name[index + 1]] &&
+										index < name.length - 1 && (
+											<span>/</span>
+										)}
+								</span>
+							);
+						})}
+				</div>
+				<div className="realtime-item">
+					<div className="text">Volume</div>
+					<div className="text">
+						{name &&
+							time_price_data &&
+							name.length > 0 &&
+							name.map((item, index) => {
+								return (
+									<span key={index}>
+										{time_price_data[item] &&
+											this.setFixed(
+												time_price_data[item].volume
+											)}
+										{time_price_data[name[index + 1]] &&
+											index < name.length - 1 && (
+												<span>/</span>
+											)}
 									</span>
 								);
 							})}
 					</div>
 				</div>
-				<div className="detail">
-					<div className="item">
-						<div className="name">当前价格</div>
-						<div
-							className={setcolor(
-								time_price_data ? time_price_data.price : ""
-							)}
-						>
-							{time_price_data ? time_price_data.price : ""}
-						</div>
+				<div className="realtime-item">
+					<div className="text">24H最高值</div>
+					<div className="text">
+						{name &&
+							time_price_data &&
+							name.length > 0 &&
+							name.map((item, index) => {
+								return (
+									<span key={index}>
+										{time_price_data[item] &&
+											this.setFixed(
+												time_price_data[item][
+													"24h_max_price"
+												]
+											)}
+										{time_price_data[name[index + 1]] &&
+											index < name.length - 1 && (
+												<span>/</span>
+											)}
+									</span>
+								);
+							})}
 					</div>
-					<div className="item">
-						<div className="name">Volume</div>
-						<div
-							className={setcolor(
-								time_price_data ? time_price_data.volume : ""
-							)}
-						>
-							{time_price_data ? time_price_data.volume : ""}
-						</div>
+				</div>
+				<div className="realtime-item">
+					<div className="text">24H最低值</div>
+					<div className="text">
+						{name &&
+							time_price_data &&
+							name.length > 0 &&
+							name.map((item, index) => {
+								return (
+									<span key={index}>
+										{time_price_data[item] &&
+											this.setFixed(
+												time_price_data[item][
+													"24h_min_price"
+												]
+											)}
+										{time_price_data[name[index + 1]] &&
+											index < name.length - 1 && (
+												<span>/</span>
+											)}
+									</span>
+								);
+							})}
 					</div>
-					<div className="item">
-						<div className="name">24H-Change</div>
-						<div
-							className={setcolor(
-								time_price_data
-									? time_price_data["24h_change"]
-									: ""
-							)}
-						>
-							{time_price_data
-								? time_price_data["24h_change"]
-								: ""}
-						</div>
-					</div>
-					<div className="item">
-						<div className="name">24H最高值</div>
-						<div
-							className={setcolor(
-								time_price_data
-									? time_price_data["24h_max_price"]
-									: ""
-							)}
-						>
-							{time_price_data
-								? time_price_data["24h_max_price"]
-								: ""}
-						</div>
-					</div>
-					<div className="item">
-						<div className="name">24H最低值</div>
-						<div
-							className={setcolor(
-								time_price_data
-									? time_price_data["24h_min_price"]
-									: ""
-							)}
-						>
-							{time_price_data
-								? time_price_data["24h_min_price"]
-								: ""}
-						</div>
-					</div>
+				</div>
+				<div className="realtime-footer">
+					<span className="look">查看K线图</span>
+				</div>
+				<div className="realtime-top">
+					<span className="btn">浏览器></span>
+					<span className="btn">支持钱包></span>
 				</div>
 			</div>
 		);
@@ -128,7 +151,7 @@ class RealTime extends Component {
 }
 const mapStateToProps = state => {
 	return {
-		time_price_index: state.pageData.time_price_index,
+		// time_price_index: state.pageData.time_price_index,
 		time_price: state.pageData.totleData
 			? state.pageData.totleData.project_time_prices
 			: null,
@@ -137,9 +160,9 @@ const mapStateToProps = state => {
 };
 const mapDispatchToProps = (dispatch, ownProps) => {
 	return {
-		changeTimePriceIndexAction: actions.changeTimePriceIndexAction(
-			dispatch
-		),
+		// changeTimePriceIndexAction: actions.changeTimePriceIndexAction(
+		// 	dispatch
+		// ),
 		getTimePriceDataAction: actions.getTimePriceDataAction(dispatch)
 	};
 };

@@ -133,9 +133,12 @@ export default class project extends Component {
 			return "little";
 		}
 	}
+	setFixed(num) {
+		return (parseInt(num * 10 * 10, 10) / 100).toFixed(2);
+	}
 
 	render() {
-		const { projectList } = this.props;
+		const { projectList, timepriceData } = this.props;
 		const listData = this.setData(projectList);
 
 		let settings = {
@@ -277,9 +280,36 @@ export default class project extends Component {
 																}}
 															>
 																{item.type ==
-																	5 && (
-																	<span className="lefttop" />
-																)}
+																	5 &&
+																	timepriceData[
+																		item.id
+																	] && (
+																		<span className="lefttop">
+																			{this.setFixed(
+																				timepriceData[
+																					item
+																						.id
+																				]
+																					.price
+																			)}
+																		</span>
+																	)}
+																{item.type ==
+																	5 &&
+																	timepriceData[
+																		item.id
+																	] && (
+																		<span className="righttop">
+																			{this.setFixed(
+																				timepriceData[
+																					item
+																						.id
+																				][
+																					"24h_change"
+																				]
+																			)}
+																		</span>
+																	)}
 																{item.type ==
 																	6 && (
 																	<span className="lefttop">

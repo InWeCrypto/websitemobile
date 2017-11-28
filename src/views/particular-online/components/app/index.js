@@ -9,6 +9,7 @@ import CommonTitle from "../../../components/common-title/";
 import RealTime from "../realtime/";
 import Trade from "../trade/";
 import Inews from "../../../components/inews/";
+import NewsFlash from "../newsflash/";
 import { requestUrl } from "../../../../config/config";
 
 //const locationId = window.location.hash.split("=")[1];
@@ -22,7 +23,6 @@ class AppComponent extends Component {
 		document.title = "项目详情";
 		await this.props.getTotleDataAction({ id: query.id });
 	}
-
 	getTime(type) {
 		if (type == null) {
 			return;
@@ -114,10 +114,10 @@ class AppComponent extends Component {
 			};
 			this.props.getKlineDataAction(data);
 		}
-		if (nextProps.klineData != this.props.klineData) {
-			console.log(11);
-			this.viewEcharts(nextProps.klineData);
-		}
+		// if (nextProps.klineData != this.props.klineData) {
+		// 	console.log(11);
+		// 	this.viewEcharts(nextProps.klineData);
+		// }
 	}
 	componentWillUpdate() {
 		this.setIframe(
@@ -461,6 +461,7 @@ class AppComponent extends Component {
 			<div className="particular-online">
 				<CommonTitle title="项目详情" />
 				<div className="title">{totleData ? totleData.name : ""}</div>
+				<NewsFlash />
 				<div className="container">
 					<div className="realtime">
 						<RealTime
@@ -469,7 +470,7 @@ class AppComponent extends Component {
 							}
 						/>
 					</div>
-					<div className="k-box">
+					{/* <div className="k-box">
 						<div className="kbox-menu">
 							<span
 								className={this.setKColor(0)}
@@ -533,7 +534,7 @@ class AppComponent extends Component {
 							</span>
 						</div>
 						<div className="chart" ref="chart" />
-					</div>
+					</div> */}
 					{totleData &&
 						totleData.marketlist && (
 							<div className="trade-box">

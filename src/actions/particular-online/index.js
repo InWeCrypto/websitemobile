@@ -1,18 +1,18 @@
 import { getData } from "../../views/lib/js/app";
 import { requestUrl } from "../../config/config";
-const TOTLEDATA = "TOTLEDATA";
-const TIMEPRICEINDEX = "TIMEPRICEINDEX";
-const TIMEPRICEDATA = "TIMEPRICEDATA";
-const MARKETINDEX = "MARKETINDEX";
-const MARKETDATA = "MARKETDATA";
-const MARKETTYPE = "MARKETTYPE";
-const DESCINDEX = "DESCINDEX";
-const INEWSINDEX = "INEWSINDEX";
-const VIDEOLIST = "VIDEOLIST";
-const IMGTXTLIST = "IMGTXTLIST";
-const DAYINDEX = "DAYINDEX";
-const KLINEDATA = "KLINEDATA";
-const totleData = data => {
+export const TOTLEDATA = "TOTLEDATA";
+//const TIMEPRICEINDEX = "TIMEPRICEINDEX";
+export const TIMEPRICEDATA = "TIMEPRICEDATA";
+export const MARKETINDEX = "MARKETINDEX";
+export const MARKETDATA = "MARKETDATA";
+export const MARKETTYPE = "MARKETTYPE";
+export const DESCINDEX = "DESCINDEX";
+export const INEWSINDEX = "INEWSINDEX";
+export const VIDEOLIST = "VIDEOLIST";
+export const IMGTXTLIST = "IMGTXTLIST";
+export const DAYINDEX = "DAYINDEX";
+export const KLINEDATA = "KLINEDATA";
+export const totleData = data => {
 	return {
 		type: TOTLEDATA,
 		data
@@ -23,7 +23,7 @@ const getTotleDataAction = dispatch => data => {
 		.then(res => {
 			if (res.code === 4000) {
 				dispatch(totleData(res.data));
-				dispatch(timePrice(0));
+				//  dispatch(timePrice(0));
 				dispatch(marketIndex(0));
 				dispatch(inewsIndex(0));
 				dispatch(dayIndex(0));
@@ -35,26 +35,34 @@ const getTotleDataAction = dispatch => data => {
 			console.log(e);
 		});
 };
-const timePrice = data => {
-	return {
-		type: TIMEPRICEINDEX,
-		data
-	};
-};
-const changeTimePriceIndexAction = dispatch => idx => {
-	dispatch(timePrice(idx));
-};
+// const timePrice = data => {
+// 	return {
+// 		type: TIMEPRICEINDEX,
+// 		data
+// 	};
+// };
+// const changeTimePriceIndexAction = dispatch => idx => {
+// 	dispatch(timePrice(idx));
+// };
 const timePriceData = data => {
 	return {
 		type: TIMEPRICEDATA,
-		data
+		data: {
+			type: data.type,
+			data: data.data
+		}
 	};
 };
 const getTimePriceDataAction = dispatch => data => {
 	getData(`${requestUrl}/${data.url}`)
 		.then(res => {
 			if (res.code === 4000) {
-				dispatch(timePriceData(res.data));
+				dispatch(
+					timePriceData({
+						type: data.type,
+						data: res.data
+					})
+				);
 			} else {
 				throw new Error(res.msg);
 			}
@@ -190,7 +198,7 @@ const getKlineDataAction = dispatch => data => {
 };
 export default {
 	getTotleDataAction,
-	changeTimePriceIndexAction,
+	//changeTimePriceIndexAction,
 	getTimePriceDataAction,
 	changeMarketIndexAction,
 	getMarketDataAction,

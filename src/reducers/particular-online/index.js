@@ -1,7 +1,7 @@
 import { combineReducers } from "redux";
 import {
 	TOTLEDATA,
-	TIMEPRICEINDEX,
+	//TIMEPRICEINDEX,
 	TIMEPRICEDATA,
 	MARKETINDEX,
 	MARKETDATA,
@@ -16,7 +16,7 @@ import {
 const initialState = {
 	id: null,
 	totleData: null,
-	time_price_index: null,
+	//time_price_index: null,
 	time_price_data: null,
 	marketindex: null,
 	marketData: null,
@@ -30,51 +30,50 @@ const initialState = {
 };
 const pageData = (state = initialState, action) => {
 	switch (action.type) {
-		case "TOTLEDATA":
+		case TOTLEDATA:
 			return Object.assign({}, state, {
 				totleData: action.data
 			});
-		case "TIMEPRICEINDEX":
+		case TIMEPRICEDATA:
 			return Object.assign({}, state, {
-				time_price_index: action.data
+				time_price_data: {
+					[action.data.type]: action.data.data,
+					...state.time_price_data
+				}
 			});
-		case "TIMEPRICEDATA":
-			return Object.assign({}, state, {
-				time_price_data: action.data
-			});
-		case "MARKETINDEX":
+		case MARKETINDEX:
 			return Object.assign({}, state, {
 				marketindex: action.data
 			});
-		case "MARKETDATA":
+		case MARKETDATA:
 			return Object.assign({}, state, {
 				marketData: action.data
 			});
-		case "MARKETTYPE":
+		case MARKETTYPE:
 			return Object.assign({}, state, {
 				showMarketType: action.data
 			});
-		case "DESCINDEX":
+		case DESCINDEX:
 			return Object.assign({}, state, {
 				descIndex: action.data
 			});
-		case "INEWSINDEX":
+		case INEWSINDEX:
 			return Object.assign({}, state, {
 				inewsIndex: action.data
 			});
-		case "VIDEOLIST":
+		case VIDEOLIST:
 			return Object.assign({}, state, {
 				videoList: action.data
 			});
-		case "IMGTXTLIST":
+		case IMGTXTLIST:
 			return Object.assign({}, state, {
 				imgTxtList: action.data
 			});
-		case "DAYINDEX":
+		case DAYINDEX:
 			return Object.assign({}, state, {
 				dayIndex: action.data
 			});
-		case "KLINEDATA":
+		case KLINEDATA:
 			return Object.assign({}, state, {
 				klineData: action.data
 			});
