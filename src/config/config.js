@@ -1,1 +1,1 @@
-export const requestUrl = "https://dev.inwecrypto.com:4430";
+export const requestUrl = "https://china.inwecrypto.com:4431/";
