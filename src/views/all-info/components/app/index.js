@@ -18,12 +18,28 @@ class AppComponent extends Component {
 			title: "所有资讯"
 		};
 	}
+	async componentWillMount() {
+		let d = await this.props.getAllInfoAction();
+	}
+
 	componentDidMount() {
 		document.title = this.state.title;
+	}
+	componentWillReceiveProps(nextProps) {
+		if (nextProps.data && nextProps.data != this.props.data) {
+			this.props.showDataAction({
+				type: 0,
+				data: nextProps.data
+			});
+		}
 	}
 	changeType(idx) {
 		this.props.changeTypeIndexAction({
 			index: idx
+		});
+		this.props.showDataAction({
+			type: idx,
+			data: this.props.data
 		});
 	}
 
@@ -32,7 +48,7 @@ class AppComponent extends Component {
 	}
 	render() {
 		const state = this.state;
-		let { data } = this.props;
+		let { showData } = this.props;
 		return (
 			<Router>
 				<div>
@@ -64,52 +80,61 @@ class AppComponent extends Component {
 						</span>
 					</div>
 					<div className="list-box">
-						{!data || data.length === 0
-							? "暂无数据"
-							: data.map(item => {
-									return (
-										<div className="group" key={item.id}>
-											<div className="group-title">
-												{item.title}
-											</div>
-											<div className="group-cont">
-												<div className="img-box">
-													<img src={item.img} />
-												</div>
-												<a
-													className="group-info"
-													href={item.url}
-												>
-													<div>{item.desc}</div>
-												</a>
-											</div>
-											<div className="group-ctrl">
-												<span className="txt">
-													{item.updated_at}
-													&nbsp;|&nbsp;
-												</span>
-												<span className="txt">
-													阅读：{item.click_rate}&nbsp;|&nbsp;
-												</span>
-												<span className="txt">
-													回复：{item.is_comment}&nbsp;|&nbsp;
-												</span>
-												<span className="txt">
-													收藏&nbsp;&nbsp;
-													<img
-														className="collect"
-														src={
-															data.save_user &&
-															data.save_user !== 0
-																? collected
-																: uncollect
-														}
-													/>
-												</span>
-											</div>
+						{!showData || showData.length === 0 ? (
+							<div
+								style={{
+									textAlign: "center",
+									padding: ".5rem"
+								}}
+							>
+								暂无数据
+							</div>
+						) : (
+							showData.map(item => {
+								return (
+									<div className="group" key={item.id}>
+										<div className="group-title">
+											{item.title}
 										</div>
-									);
-								})}
+										<div className="group-cont">
+											<div className="img-box">
+												<img src={item.img} />
+											</div>
+											<a
+												className="group-info"
+												href={item.url}
+											>
+												<div>{item.desc}</div>
+											</a>
+										</div>
+										<div className="group-ctrl">
+											<span className="txt">
+												{item.updated_at}
+												&nbsp;|&nbsp;
+											</span>
+											<span className="txt">
+												阅读：{item.click_rate}&nbsp;|&nbsp;
+											</span>
+											<span className="txt">
+												回复：{item.is_comment}&nbsp;|&nbsp;
+											</span>
+											<span className="txt">
+												收藏&nbsp;&nbsp;
+												<img
+													className="collect"
+													src={
+														item.save_user &&
+														item.save_user !== 0
+															? collected
+															: uncollect
+													}
+												/>
+											</span>
+										</div>
+									</div>
+								);
+							})
+						)}
 					</div>
 				</div>
 			</Router>
@@ -120,13 +145,15 @@ class AppComponent extends Component {
 const mapStateToProps = state => {
 	return {
 		data: state.allInfo.data,
-		typeIndex: state.allInfo.typeIndex
+		typeIndex: state.allInfo.typeIndex,
+		showData: state.allInfo.showData
 	};
 };
 const mapDispatchToProps = (dispatch, ownProps) => {
 	return {
 		getAllInfoAction: actions.getAllInfoAction(dispatch),
-		changeTypeIndexAction: actions.changeTypeIndexAction(dispatch)
+		changeTypeIndexAction: actions.changeTypeIndexAction(dispatch),
+		showDataAction: actions.showDataAction(dispatch)
 	};
 };
 export default connect(mapStateToProps, mapDispatchToProps)(AppComponent);
