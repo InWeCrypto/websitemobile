@@ -11,12 +11,15 @@ import Trade from "../trade/";
 import Inews from "../../../components/inews/";
 import NewsFlash from "../newsflash/";
 import { requestUrl } from "../../../../config/config";
-
-//const locationId = window.location.hash.split("=")[1];
+import { getFile } from "../../../lib/js/app";
+import Slider from "react-slick";
 
 class AppComponent extends Component {
 	constructor(props) {
 		super(props);
+		this.state = {
+			firstLoad: true
+		};
 	}
 	async componentWillMount() {
 		let query = window.util.getQuery(window.location.href);
@@ -91,7 +94,6 @@ class AppComponent extends Component {
 			$(this.refs.twitterbox).html(nextProps.totleData.desc);
 		}
 		if (nextProps.totleData.desc.length == 0) {
-			console.log(222);
 			this.refs.twitterContainer.style.display = "none";
 		}
 
@@ -114,22 +116,17 @@ class AppComponent extends Component {
 			};
 			this.props.getKlineDataAction(data);
 		}
-		// if (nextProps.klineData != this.props.klineData) {
-		// 	console.log(11);
-		// 	this.viewEcharts(nextProps.klineData);
-		// }
+		if (
+			nextProps.totleData &&
+			nextProps.totleData.project_desc &&
+			nextProps.totleData.project_desc.length > 0
+		) {
+			nextProps.totleData.project_desc.map((item, index) => {
+				this.insertHtml(index, `${requestUrl}/article/${item.id}`);
+			});
+		}
 	}
-	componentWillUpdate() {
-		this.setIframe(
-			this.props.totleData &&
-			this.props.totleData.project_desc &&
-			this.props.totleData.project_desc[this.props.descIndex]
-				? requestUrl +
-					"/article/" +
-					this.props.totleData.project_desc[this.props.descIndex].id
-				: ""
-		);
-	}
+
 	setOptionData(data) {
 		if (!(data instanceof Array)) {
 			return;
@@ -454,9 +451,61 @@ class AppComponent extends Component {
 	setboxClass(isAll) {
 		return isAll ? "box1" : "box1 one";
 	}
+	toggleIntro(idx, e) {
+		const iframebox = this.refs[`introIframe_${idx}`];
+		const t = this.refs[`introCont_${idx}`].style.display;
+		if (t === "none") {
+			e.target.className = "arrow show";
+			this.refs[`introCont_${idx}`].style.display = "block";
+			iframebox.style.height = "auto";
+			let h = iframebox.clientHeight;
+			if (h > 200) {
+				iframebox.style.height = "200px";
+			} else {
+				this.refs[`morebtn_${idx}`].style.display = "none";
+			}
+		} else {
+			e.target.className = "arrow";
+			this.refs[`introCont_${idx}`].style.display = "none";
+		}
+	}
+	insertHtml(idx, url) {
+		const iframebox = this.refs[`introIframe_${idx}`];
+		if (iframebox) {
+			this.setState({
+				firstLoad: false
+			});
+		} else {
+			return;
+		}
+		getFile(url).then(res => {
+			if (!/<!DOCTYPE[^>]+>/.test(res)) {
+				iframebox.innerHTML = res;
+			} else {
+				let styleReg = new RegExp(/<style(([\s\S])*?)<\/style>/gi);
+				let styleArr = res.match(styleReg);
+				let bodyReg = new RegExp(/<body>[\S\s]*?<\/body>/);
+				let bodyArr = bodyReg.exec(res);
+				iframebox.innerHTML = `${styleArr.join("")}${bodyArr}`;
+			}
+		});
+	}
+	showIframeAll(idx, e) {
+		const iframebox = this.refs[`introIframe_${idx}`];
+		iframebox.style.height = "auto";
+		e.target.style.display = "none";
+	}
 	render() {
 		const { totleData, videoList, inewsIndex, imgTxtList } = this.props;
-
+		const setting = {
+			dots: false,
+			infinite: true,
+			speed: 500,
+			slidesToShow: 1,
+			slidesToScroll: 1,
+			autoplay: true,
+			arrows: true
+		};
 		return (
 			<div className="particular-online">
 				<CommonTitle title="项目详情" />
@@ -470,125 +519,13 @@ class AppComponent extends Component {
 							}
 						/>
 					</div>
-					{/* <div className="k-box">
-						<div className="kbox-menu">
-							<span
-								className={this.setKColor(0)}
-								onClick={this.changeTime.bind(this, 0)}
-							>
-								1m
-							</span>
-							<span
-								className={this.setKColor(1)}
-								onClick={this.changeTime.bind(this, 1)}
-							>
-								5m
-							</span>
-							<span
-								className={this.setKColor(2)}
-								onClick={this.changeTime.bind(this, 2)}
-							>
-								15m
-							</span>
-							<span
-								className={this.setKColor(3)}
-								onClick={this.changeTime.bind(this, 3)}
-							>
-								30m
-							</span>
-							<span
-								className={this.setKColor(4)}
-								onClick={this.changeTime.bind(this, 4)}
-							>
-								1h
-							</span>
-							<span
-								className={this.setKColor(5)}
-								onClick={this.changeTime.bind(this, 5)}
-							>
-								2h
-							</span>
-							<span
-								className={this.setKColor(6)}
-								onClick={this.changeTime.bind(this, 6)}
-							>
-								4h
-							</span>
-							<span
-								className={this.setKColor(7)}
-								onClick={this.changeTime.bind(this, 7)}
-							>
-								6h
-							</span>
-							<span
-								className={this.setKColor(8)}
-								onClick={this.changeTime.bind(this, 8)}
-							>
-								1d
-							</span>
-							<span
-								className={this.setKColor(9)}
-								onClick={this.changeTime.bind(this, 9)}
-							>
-								1w
-							</span>
-						</div>
-						<div className="chart" ref="chart" />
-					</div> */}
 					{totleData &&
-						totleData.marketlist && (
+						totleData.project_markets &&
+						totleData.project_markets[0] && (
 							<div className="trade-box">
 								<Trade />
 							</div>
 						)}
-					{totleData &&
-						totleData.project_desc &&
-						totleData.project_desc.length > 0 && (
-							<div className="intro-box">
-								<div className="intro-nav">
-									{totleData &&
-										totleData.project_desc &&
-										totleData.project_desc.length > 0 &&
-										totleData.project_desc.map(
-											(item, index) => {
-												return (
-													<div
-														key={index}
-														className={this.setDescCur(
-															index
-														)}
-														onClick={this.changeDescClick.bind(
-															this,
-															index
-														)}
-													>
-														{item.title}
-													</div>
-												);
-											}
-										)}
-								</div>
-								<div ref="iframebox">
-									<iframe
-										src={
-											totleData &&
-											totleData.project_desc &&
-											totleData.project_desc[
-												this.props.descIndex
-											]
-												? requestUrl +
-													"/article/" +
-													totleData.project_desc[
-														this.props.descIndex
-													].id
-												: ""
-										}
-										className="intro-cont"
-									/>
-								</div>
-							</div>
-						)}
-
 					{((videoList && videoList.length > 0) ||
 						(imgTxtList && imgTxtList.length > 0)) && (
 						<div className="news-box">
@@ -600,8 +537,63 @@ class AppComponent extends Component {
 							/>
 						</div>
 					)}
+					{totleData &&
+						totleData.project_desc && (
+							<div className="intro-box">
+								{totleData.project_desc.length > 0 &&
+									totleData.project_desc.map(
+										(item, index) => {
+											return (
+												<div
+													key={index}
+													className="intro-group"
+												>
+													<div className="intro-title">
+														<div className="txt">
+															{item.title}
+														</div>
+														<div
+															className="arrow"
+															onClick={this.toggleIntro.bind(
+																this,
+																index
+															)}
+														/>
+													</div>
+													<div
+														className="intro-cont"
+														ref={`introCont_${
+															index
+														}`}
+														style={{
+															display: "none"
+														}}
+													>
+														<div
+															ref={`introIframe_${
+																index
+															}`}
+															className="iframe"
+														/>
+														<div
+															ref={`morebtn_${
+																index
+															}`}
+															className="morebtn"
+															onClick={this.showIframeAll.bind(
+																this,
+																index
+															)}
+														/>
+													</div>
+												</div>
+											);
+										}
+									)}
+							</div>
+						)}
 
-					<div
+					{/* <div
 						className={this.setboxClass(
 							totleData &&
 								totleData.project_explorers &&
@@ -656,13 +648,25 @@ class AppComponent extends Component {
 									</div>
 								</div>
 							)}
-					</div>
+					</div> */}
 					<div className="twitter" ref="twitterContainer">
 						<div className="twitter-title">Twitter</div>
 						<div className="twitter-cont" ref="twitterbox" />
 					</div>
 
-					{totleData &&
+					<div className="social">
+						<div className="social-title">Social</div>
+						<div className="social-cont">
+							<div className="social-box">
+								<Slider {...setting}>
+									<div className="cont">1</div>
+									<div className="cont">1</div>
+								</Slider>
+							</div>
+						</div>
+					</div>
+
+					{/* {totleData &&
 						totleData.project_medias &&
 						totleData.project_medias.length0 && (
 							<div className="box2">
@@ -684,7 +688,7 @@ class AppComponent extends Component {
 									)}
 								</div>
 							</div>
-						)}
+						)} */}
 				</div>
 			</div>
 		);

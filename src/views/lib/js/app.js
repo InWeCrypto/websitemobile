@@ -44,6 +44,17 @@ export const getData = function(url, method, param, header) {
 			});
 	});
 };
+export const getFile = url => {
+	return new Promise((resolve, reject) => {
+		fetch(url)
+			.then(res => {
+				resolve(res.text());
+			})
+			.catch(e => {
+				console.log("get file fail;");
+			});
+	});
+};
 var formatData = function(obj) {
 	var k = 0;
 	var str = "";

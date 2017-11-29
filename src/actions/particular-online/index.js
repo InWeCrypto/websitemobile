@@ -3,7 +3,6 @@ import { requestUrl } from "../../config/config";
 export const TOTLEDATA = "TOTLEDATA";
 //const TIMEPRICEINDEX = "TIMEPRICEINDEX";
 export const TIMEPRICEDATA = "TIMEPRICEDATA";
-export const MARKETINDEX = "MARKETINDEX";
 export const MARKETDATA = "MARKETDATA";
 export const MARKETTYPE = "MARKETTYPE";
 export const DESCINDEX = "DESCINDEX";
@@ -23,8 +22,6 @@ const getTotleDataAction = dispatch => data => {
 		.then(res => {
 			if (res.code === 4000) {
 				dispatch(totleData(res.data));
-				//  dispatch(timePrice(0));
-				dispatch(marketIndex(0));
 				dispatch(inewsIndex(0));
 				dispatch(dayIndex(0));
 			} else {
@@ -71,15 +68,7 @@ const getTimePriceDataAction = dispatch => data => {
 			console.log(e);
 		});
 };
-const marketIndex = data => {
-	return {
-		type: MARKETINDEX,
-		data
-	};
-};
-const changeMarketIndexAction = dispatch => data => {
-	dispatch(marketIndex(data));
-};
+
 const marketData = data => {
 	return {
 		type: MARKETDATA,
@@ -200,7 +189,6 @@ export default {
 	getTotleDataAction,
 	//changeTimePriceIndexAction,
 	getTimePriceDataAction,
-	changeMarketIndexAction,
 	getMarketDataAction,
 	changeMarketTypeAction,
 	changeDescIndex,

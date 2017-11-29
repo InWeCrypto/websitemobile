@@ -3,7 +3,6 @@ import {
 	TOTLEDATA,
 	//TIMEPRICEINDEX,
 	TIMEPRICEDATA,
-	MARKETINDEX,
 	MARKETDATA,
 	MARKETTYPE,
 	DESCINDEX,
@@ -18,7 +17,6 @@ const initialState = {
 	totleData: null,
 	//time_price_index: null,
 	time_price_data: null,
-	marketindex: null,
 	marketData: null,
 	showMarketType: false,
 	descIndex: 0,
@@ -40,10 +38,6 @@ const pageData = (state = initialState, action) => {
 					[action.data.type]: action.data.data,
 					...state.time_price_data
 				}
-			});
-		case MARKETINDEX:
-			return Object.assign({}, state, {
-				marketindex: action.data
 			});
 		case MARKETDATA:
 			return Object.assign({}, state, {

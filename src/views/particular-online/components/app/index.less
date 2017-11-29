@@ -1,4 +1,6 @@
 @import "../../../lib/css/base.less";
+@import "~slick-carousel/slick/slick.css";
+@import "~slick-carousel/slick/slick-theme.css";
 html,
 body {
 	background: #f2f2f2;
@@ -14,7 +16,6 @@ body {
 	}
 	.container {
 		box-sizing: border-box;
-		padding: 0.1rem;
 	}
 	.realtime {
 		background: rgba(8, 4, 19, 0.5);
@@ -36,26 +37,43 @@ body {
 	.trade-box {
 		margin: 0.1rem 0;
 	}
-	.intro-nav {
-		display: flex;
-		.intro-navbtn {
-			flex: 1;
-			text-align: center;
-			padding: 0.1rem 0.05rem;
-			color: @white;
-			background: @orange1;
+
+	.intro-box {
+		background: @white;
+		margin-top: 0.1rem;
+		.intro-title {
+			padding: 0.1rem;
+			display: flex;
+			align-items: center;
+			border-bottom: 0.01rem solid @grey3;
+			.txt {
+				flex: 1;
+			}
+			.arrow {
+				width: 0;
+				height: 0;
+				border-left: 0.08rem solid transparent;
+				border-right: 0.08rem solid transparent;
+				border-bottom: 0.1rem solid @orange;
+				transition: transform 0.2s linear;
+			}
+			.arrow.show {
+				transform: rotate(180deg);
+				transform-origin: 50% 50%;
+			}
+		}
+		.iframe {
+			border: none;
+			width: 100%;
+			height: 2rem;
+			overflow: hidden;
+			p,
+			span {
+				color: @black !important;
+			}
 		}
 	}
-	.intro-navbtn.cur {
-		background: @black;
-	}
-	.intro-cont {
-		height: 3rem;
-		box-sizing: border-box;
-		width: 100%;
-		border: 0;
-		background: rgba(0, 0, 0, 0.5);
-	}
+
 	.news-box {
 		margin: 0.1rem 0;
 	}
@@ -106,10 +124,12 @@ body {
 		margin: 0.1rem 0;
 		background: @white;
 		color: @black;
+		box-sizing: border-box;
+		padding: 0 0.1rem;
 		.twitter-title {
 			padding: 0.1rem 0;
 			border-bottom: 0.01rem solid @grey3;
-			text-align: center;
+			text-align: left;
 		}
 		.twitter-cont {
 			height: 3rem;
@@ -117,25 +137,64 @@ body {
 			overflow-x: hidden;
 		}
 	}
-	.box2 {
-		background: @blue;
-		.box-title {
-			padding: 0.1rem 0;
+	.social {
+		margin-top: 0.1rem;
+		background: @white;
+		display: flex;
+		align-items: center;
+		.social-title {
+			background: @blue;
+			width: 0.6rem;
+			height: 0.6rem;
 			text-align: center;
+			line-height: 0.6rem;
 			color: @white;
-			border-bottom: 0.01rem solid @black;
+			font-size: 0.14rem;
 		}
-		.box-cont {
-			padding: 0.1rem 0 0 0.1rem;
+		.social-box {
+			width: 100%;
 		}
-		.moreinfo {
-			height: 0.25rem;
-			margin: 0 0.1rem 0.1rem 0;
-			display: inline-block;
-			color: @white;
-			img {
-				height: 100%;
+		.social-cont {
+			display: flex;
+			box-sizing: border-box;
+			padding: 0 0.3rem;
+			overflow: hidden;
+			.cont {
+				padding: 0.1rem 0;
 			}
 		}
+		.slick-prev:before,
+		.slick-next:before {
+			color: @white;
+			opacity: 1;
+			position: relative;
+			top: 0.01rem;
+		}
+		.slick-prev,
+		.slick-next {
+			background: @black;
+			border-radius: 50%;
+		}
 	}
+	// .box2 {
+	// 	background: @blue;
+	// 	.box-title {
+	// 		padding: 0.1rem 0;
+	// 		text-align: center;
+	// 		color: @white;
+	// 		border-bottom: 0.01rem solid @black;
+	// 	}
+	// 	.box-cont {
+	// 		padding: 0.1rem 0 0 0.1rem;
+	// 	}
+	// 	.moreinfo {
+	// 		height: 0.25rem;
+	// 		margin: 0 0.1rem 0.1rem 0;
+	// 		display: inline-block;
+	// 		color: @white;
+	// 		img {
+	// 			height: 100%;
+	// 		}
+	// 	}
+	// }
 }

@@ -3,33 +3,33 @@
 	background: @white;
 	.inews-title {
 		color: @black;
-		text-align: center;
 		padding: 0.1rem;
-		border-bottom: 0.01rem solid @grey3;
+		font-size: 0.14rem;
 	}
 	.inews-container {
 		box-sizing: border-box;
-		padding: 0.1rem;
 	}
 	.inews-nav {
-		text-align: center;
+		border-bottom: 0.01rem solid @grey3;
+		box-sizing: border-box;
+		padding: 0 0.1rem;
 		.inews-navbox {
 			display: inline-block;
 			border-radius: 0.03rem;
-			border: 0.01rem solid @orange1;
 			.inews-navbtn {
-				width: 1rem;
-				padding: 0.08rem 0;
-				color: @orange1;
+				padding: 0 0.1rem 0.08rem;
+				color: @black;
+				text-align: center;
 				display: inline-block;
+				margin-right: 0.1rem;
 			}
 			.inews-navbtn.cur {
-				background: @orange1;
-				color: @white;
+				border-bottom: 0.03rem solid @orange1;
 			}
 		}
 	}
 	.inews-list {
+		padding: 0 0.1rem 0.1rem;
 		.inews-item {
 			display: flex;
 			align-items: flex-start;
@@ -57,7 +57,7 @@
 					white-space: nowrap;
 				}
 				.item-desc {
-					margin: 0.05rem 0;
+					margin: 0.05rem 0 0 0;
 					color: #333;
 					white-space: normal;
 					height: 0.65rem;

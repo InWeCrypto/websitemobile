@@ -1,59 +1,44 @@
 @import "../../../lib/css/base.less";
 .trade {
-	padding-bottom: 0.2rem;
+	padding: 0 0.1rem;
 	background: @white;
 	position: relative;
 	color: @black;
 	.trade-title {
 		padding: 0.08rem 0;
-		border-bottom: 0.01rem solid #e6e6e6;
-		text-align: center;
 		position: relative;
-	}
-	.type-box {
-		position: absolute;
-		right: 0;
-		top: 0;
-		bottom: 0;
-		background: @blue;
-		color: @white;
-		box-sizing: border-box;
-		.checked {
-			height: 100%;
-			padding: 0.08rem 0;
-			box-sizing: border-box;
-			width: 0.6rem;
-			position: relative;
-			.checkbox {
-				position: absolute;
-				left: 0;
-				width: 100%;
-				top: 0.28rem;
-				z-index: 1;
-				background: @grey;
-				.check-item {
-					padding: 0.06rem 0;
-					display: block;
-					border-bottom: 0.01rem solid #fff;
-				}
-			}
-		}
 	}
 	.trade-data {
 		.item {
-			display: flex;
-			align-items: center;
-			justify-content: center;
 			border-bottom: 0.01rem solid #e6e6e6;
-
+			.item-line {
+				display: flex;
+				align-items: center;
+				justify-content: center;
+			}
+			.name {
+				color: #a4a4a4;
+			}
 			.td {
 				flex: 1;
-				text-align: center;
+				text-align: left;
 				padding: 0.08rem 0;
 				overflow: hidden;
 				text-overflow: ellipsis;
 				white-space: nowrap;
 			}
+			.td1 {
+				flex: 1;
+				text-align: right;
+				padding: 0.08rem 0;
+				overflow: hidden;
+				text-overflow: ellipsis;
+				white-space: nowrap;
+			}
+		}
+		.showbtn {
+			padding: 0.08rem 0;
+			text-align: center;
 		}
 	}
 }
