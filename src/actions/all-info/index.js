@@ -1,6 +1,7 @@
 import { getData } from "../../views/lib/js/app";
 import { requestUrl } from "../../config/config";
 const GET_ALL_INFO = "GET_ALL_INFO";
+const TYPEINDEX = "TYPEINDEX";
 const allInfo = data => {
 	return {
 		type: GET_ALL_INFO,
@@ -21,7 +22,17 @@ const getAllInfoAction = dispatch => {
 			//s	console.log(e);
 		});
 };
+const typeIndex = data => {
+	return {
+		type: TYPEINDEX,
+		data
+	};
+};
+const changeTypeIndexAction = dispatch => data => {
+	dispatch(typeIndex(data.index));
+};
 
 export default {
-	getAllInfoAction
+	getAllInfoAction,
+	changeTypeIndexAction
 };

@@ -1,8 +1,9 @@
 import { combineReducers } from "redux";
-import { GET_ALL_INFO } from "../../actions/all-info/";
+import { GET_ALL_INFO, TYPEINDEX } from "../../actions/all-info/";
 
 const initState = {
-	data: null
+	data: null,
+	typeIndex: 0
 };
 
 const allInfo = (state = initState, action) => {
@@ -10,6 +11,10 @@ const allInfo = (state = initState, action) => {
 		case "GET_ALL_INFO":
 			return Object.assign({}, state, {
 				data: action.data
+			});
+		case "TYPEINDEX":
+			return Object.assign({}, state, {
+				typeIndex: action.data
 			});
 		default:
 			return state;

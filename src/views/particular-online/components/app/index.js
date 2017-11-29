@@ -13,6 +13,7 @@ import NewsFlash from "../newsflash/";
 import { requestUrl } from "../../../../config/config";
 import { getFile } from "../../../lib/js/app";
 import Slider from "react-slick";
+import InfoBox from "../infobox/";
 
 class AppComponent extends Component {
 	constructor(props) {
@@ -512,13 +513,15 @@ class AppComponent extends Component {
 				<div className="title">{totleData ? totleData.name : ""}</div>
 				<NewsFlash />
 				<div className="container">
-					<div className="realtime">
-						<RealTime
-							data={
-								totleData ? totleData.project_time_prices : null
-							}
-						/>
-					</div>
+					{totleData &&
+						totleData.type == 5 && (
+							<div className="realtime">
+								<RealTime
+									data={totleData.project_time_prices}
+								/>
+							</div>
+						)}
+
 					{totleData &&
 						totleData.project_markets &&
 						totleData.project_markets[0] && (
@@ -526,6 +529,11 @@ class AppComponent extends Component {
 								<Trade />
 							</div>
 						)}
+					{totleData &&
+						totleData.ico_detail && (
+							<InfoBox infoData={totleData.ico_detail} />
+						)}
+
 					{((videoList && videoList.length > 0) ||
 						(imgTxtList && imgTxtList.length > 0)) && (
 						<div className="news-box">
@@ -654,41 +662,37 @@ class AppComponent extends Component {
 						<div className="twitter-cont" ref="twitterbox" />
 					</div>
 
-					<div className="social">
-						<div className="social-title">Social</div>
-						<div className="social-cont">
-							<div className="social-box">
-								<Slider {...setting}>
-									<div className="cont">1</div>
-									<div className="cont">1</div>
-								</Slider>
-							</div>
-						</div>
-					</div>
-
-					{/* {totleData &&
+					{totleData &&
 						totleData.project_medias &&
-						totleData.project_medias.length0 && (
-							<div className="box2">
-								<div className="box-title">更多资讯</div>
-								<div className="box-cont">
-									{totleData.project_medias.map(
-										(item, index) => {
-											return (
-												<a
-													key={index}
-													className="moreinfo"
-													href={item.url}
-													target="_blank"
-												>
-													<img src={item.img} />
-												</a>
-											);
-										}
-									)}
+						totleData.project_medias.length > 0 && (
+							<div className="social">
+								<div className="social-title">Social</div>
+								<div className="social-cont">
+									<div className="social-box">
+										<Slider {...setting}>
+											{totleData.project_medias.map(
+												(item, index) => {
+													return (
+														<div
+															key={index}
+															className="cont1"
+														>
+															<a
+																target="_blank"
+																className="social-a"
+																href={item.url}
+															>
+																{item.name}
+															</a>
+														</div>
+													);
+												}
+											)}
+										</Slider>
+									</div>
 								</div>
 							</div>
-						)} */}
+						)}
 				</div>
 			</div>
 		);

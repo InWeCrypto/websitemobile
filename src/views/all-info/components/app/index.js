@@ -14,13 +14,20 @@ import collected from "../../../lib/img/icon_Favorites.png";
 class AppComponent extends Component {
 	constructor() {
 		super();
-
 		this.state = {
 			title: "所有资讯"
 		};
 	}
 	componentDidMount() {
 		document.title = this.state.title;
+	}
+	changeType(idx) {
+		this.props.changeTypeIndexAction({
+			index: idx
+		});
+	}
+	setCur(idx) {
+		return idx == this.props.typeIndex ? "nav-btn cur" : "nav-btn";
 	}
 	render() {
 		const state = this.state;
@@ -29,6 +36,32 @@ class AppComponent extends Component {
 			<Router>
 				<div>
 					<CommonTitle title={state.title} />
+					<div className="nav-box">
+						<span
+							className={this.setCur(0)}
+							onClick={this.changeType.bind(this, 0)}
+						>
+							所有
+						</span>
+						<span
+							className={this.setCur(3)}
+							onClick={this.changeType.bind(this, 3)}
+						>
+							视频
+						</span>
+						<span
+							className={this.setCur(2)}
+							onClick={this.changeType.bind(this, 2)}
+						>
+							图文
+						</span>
+						<span
+							className={this.setCur(1)}
+							onClick={this.changeType.bind(this, 1)}
+						>
+							快讯
+						</span>
+					</div>
 					<div className="list-box">
 						{!data || data.length === 0
 							? "暂无数据"
@@ -85,12 +118,14 @@ class AppComponent extends Component {
 
 const mapStateToProps = state => {
 	return {
-		data: state.allInfo.data
+		data: state.allInfo.data,
+		typeIndex: state.allInfo.typeIndex
 	};
 };
 const mapDispatchToProps = (dispatch, ownProps) => {
 	return {
-		getAllInfoAction: actions.getAllInfoAction(dispatch)
+		getAllInfoAction: actions.getAllInfoAction(dispatch),
+		changeTypeIndexAction: actions.changeTypeIndexAction(dispatch)
 	};
 };
 export default connect(mapStateToProps, mapDispatchToProps)(AppComponent);

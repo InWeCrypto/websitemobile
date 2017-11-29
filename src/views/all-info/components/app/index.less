@@ -3,6 +3,18 @@ html,
 body {
 	background: #f2f2f2;
 }
+.nav-box {
+	border-bottom: 0.01rem solid @grey3;
+	text-align: center;
+	.nav-btn {
+		display: inline-block;
+		padding: 0.05rem 0.1rem;
+		border-bottom: 0.03rem solid transparent;
+	}
+	.nav-btn.cur {
+		border-bottom: 0.03rem solid @orange;
+	}
+}
 .list-box {
 	box-sizing: border-box;
 	padding: 0.1rem;

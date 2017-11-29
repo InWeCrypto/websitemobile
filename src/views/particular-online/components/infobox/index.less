@@ -1,0 +1,32 @@
+@import "../../../lib/css/base.less";
+.info-box {
+	background: @white;
+	box-sizing: border-box;
+	padding: 0.1rem;
+	margin-top: 0.1rem;
+	.info-item.info-title {
+		font-size: 0.14rem;
+		.info-cont {
+			text-align: right;
+		}
+	}
+	.info-item {
+		display: flex;
+		padding: 0.1rem 0;
+		align-items: center;
+		.info-name {
+			width: 1rem;
+			margin-right: 0.1rem;
+		}
+		.info-cont {
+			flex: 1;
+		}
+		.info-a {
+			padding: 0.03rem;
+			border: 0.01rem solid @grey;
+			color: @grey;
+			border-radius: 0.03rem;
+			font-size: 0.12rem;
+		}
+	}
+}
