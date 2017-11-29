@@ -26,6 +26,7 @@ class AppComponent extends Component {
 			index: idx
 		});
 	}
+
 	setCur(idx) {
 		return idx == this.props.typeIndex ? "nav-btn cur" : "nav-btn";
 	}
