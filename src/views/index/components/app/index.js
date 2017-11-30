@@ -5,9 +5,13 @@ import Banner from "../banner/";
 import News from "../news";
 import Project from "../project/";
 import actions from "../../../../actions/index/";
+
 class AppComponent extends Component {
 	constructor(props) {
 		super(props);
+	}
+	componentWillMount() {
+		Pace.start();
 	}
 	componentDidMount(nextProps) {
 		document.title = "首页";

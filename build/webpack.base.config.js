@@ -12,7 +12,7 @@ var rootPath = path.resolve(__dirname, "../src");
 // 第三方依赖 js & css
 // 必须是所有页面都使用到的第三方库
 // 可配合插件 ProvidePlugin 省去依赖声明
-
+//  var pace = require("../src/views/lib/js/pace");
 entries.vendor = [
 	"whatwg-fetch",
 	"jquery",
@@ -20,7 +20,10 @@ entries.vendor = [
 	"babel-polyfill",
 	rootPath + "/views/lib/js/global.js"
 ];
-
+entries.pace = [
+	rootPath + "/views/lib/css/pace.theme.css",
+	rootPath + "/views/lib/js/pace.js"
+];
 function resolve(dir) {
 	return path.join(__dirname, "..", dir);
 }
@@ -128,7 +131,7 @@ config.entries.forEach(function(entry) {
 	var options = {
 		filename: entry.filename,
 		template: entry.template,
-		chunks: ["manifest", "vendor", "app", entry.entryName],
+		chunks: ["manifest", "pace", "vendor", "app", entry.entryName],
 		env:
 			process.env.NODE_ENV === "development"
 				? JSON.parse(config.dev.env.NODE_ENV)

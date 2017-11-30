@@ -16,9 +16,15 @@ class List extends Component {
 			title: "ICO评测"
 		};
 	}
+	componentWillMount() {
+		Pace.start();
+	}
 	componentDidMount() {
 		document.title = this.state.title;
 		this.props.getIcoAction();
+	}
+	componentDidUpdate() {
+		Pace.start();
 	}
 	render() {
 		const state = this.state;
@@ -26,39 +32,43 @@ class List extends Component {
 		return (
 			<div>
 				<div className="list-box">
-					{!data || data.length === 0
-						? "暂无数据"
-						: data.map(item => {
-								return (
-									<div className="group" key={item.id}>
-										<div className="group-cont">
-											<div className="img-box">
-												<img src={item.img} />
-											</div>
-											<Link
-												className="group-info"
-												to={{
-													pathname: "/detail",
-													search: "?id=" + item.id
-												}}
-											>
-												<div className="group-title">
-													{item.title}
-												</div>
-												<div className="group-item">
-													目前状态: {item.assess_status}
-												</div>
-												<div className="group-item">
-													官网: {item.website}
-												</div>
-												<div className="group-item">
-													时间: {item.updated_at}
-												</div>
-											</Link>
-										</div>
+					{!data || data.length === 0 ? (
+						<div style={{ textAlign: "center", padding: ".3rem" }}>
+							暂无数据
+						</div>
+					) : (
+						data.map((item, index) => {
+							return (
+								<Link
+									to={{
+										pathname: "/detail",
+										search: `?id=${item.id}`
+									}}
+									key={index}
+									className="group"
+								>
+									<div className="img-box">
+										<img
+											src="https://ss1.baidu.com/6ONXsjip0QIZ8tyhnq/it/u=2337889669,494384891&fm=173&s=6DC1A60C4E782D9265B412930300C08C&w=218&h=146&img.JPG"
+											alt=""
+										/>
 									</div>
-								);
-							})}
+									<div className="title">
+										<div className="title-txt">
+											{item.title}
+										</div>
+										<span className="state">
+											{item.assess_status}
+										</span>
+									</div>
+									<div className="intro">{item.desc}</div>
+									<div className="time">
+										{item.created_at}
+									</div>
+								</Link>
+							);
+						})
+					)}
 				</div>
 			</div>
 		);

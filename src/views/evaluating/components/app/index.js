@@ -1,5 +1,5 @@
 import "../../../lib/css/app.less";
-import "./index.less";
+
 import React, { Component } from "react";
 import ReactDOM from "react-dom";
 import { Link, Switch, Route, withRouter } from "react-router-dom";

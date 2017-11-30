@@ -1,6 +1,6 @@
 import "./index.less";
 import React, { Component } from "react";
-import Slider from "react-slick";
+import $ from "jquery";
 
 export default class News extends Component {
 	constructor(props) {
@@ -16,6 +16,29 @@ export default class News extends Component {
 			}
 		};
 	}
+	componentDidMount() {
+		this.move.bind(this);
+	}
+	move() {
+		if (!this.props.newsList || this.props.newsList.length <= 1) {
+			return;
+		}
+		const b = $(".news-cont");
+		let top = b.css("top");
+		const h = $(".news").height();
+		if (b.height() == h) {
+			return;
+		}
+		let a = null;
+		a = setTimeout(() => {
+			let to = parseInt(top, 10) - parseInt(h, 10);
+			if (Math.abs(to) == b.height()) {
+				to = 0;
+			}
+			b.css("top", to);
+			this.move();
+		}, 3000);
+	}
 	render() {
 		const settings = this.state.setting;
 		const news = this.props.newsList;
@@ -23,37 +46,24 @@ export default class News extends Component {
 			<div className="news-box">
 				<div className="title">News</div>
 				<div className="news">
-					{news &&
-						news.map((item, index) => {
-							if (index >= 2) return null;
-							return (
-								<a key={index} className="a" href={item.url}>
-									<span className="circle" />
-									<span className="txt">{item.title}</span>
-								</a>
-							);
-						})}
-
-					{/* <Slider {...settings}>
+					<div className="news-cont">
 						{news &&
-							news.length > 0 &&
 							news.map((item, index) => {
 								return (
 									<a
-										href={item.url}
-										className="cont"
 										key={index}
+										className="a"
+										href={item.url}
 									>
-										<div className="title">
+										<span className="circle" />
+										<span className="txt">
 											{item.title}
-										</div>
-										<div className="intro">{item.desc}</div>
+										</span>
 									</a>
 								);
 							})}
-					</Slider> */}
+					</div>
 				</div>
-				{/* <div className="more" /> */}
 			</div>
 		);
 	}

@@ -58,7 +58,7 @@ export default class CommonTitle extends Component {
 		return (
 			<div className="common-titlebox">
 				{state.isStation && <div className="common-titlebg" />}
-				{state.showSearch && <Search cannelBtn={this.closeSearch} />}
+				{/* {state.showSearch && <Search cannelBtn={this.closeSearch} />} */}
 
 				<div className="common-title">
 					<span className="title-txt">{state.title}</span>

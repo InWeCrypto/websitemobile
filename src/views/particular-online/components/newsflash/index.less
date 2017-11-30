@@ -20,6 +20,20 @@
 		overflow: hidden;
 		text-overflow: ellipsis;
 		white-space: nowrap;
+		height: 100%;
+		.newsflash-box {
+			position: relative;
+			top: 0;
+			transition: top 0.3s linear;
+		}
+		.newsflash_item {
+			overflow: hidden;
+			text-overflow: ellipsis;
+			white-space: nowrap;
+			display: flex;
+			align-items: center;
+			height: 0.47rem;
+		}
 		.circle {
 			width: 0.08rem;
 			height: 0.08rem;
@@ -30,6 +44,11 @@
 			margin-right: 0.1rem;
 		}
 		.txt {
+			overflow: hidden;
+			text-overflow: ellipsis;
+			white-space: nowrap;
+			display: block;
+			flex: 1;
 			vertical-align: middle;
 		}
 	}

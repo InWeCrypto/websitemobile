@@ -18,15 +18,23 @@
 		flex: 1;
 		overflow: hidden;
 		box-sizing: border-box;
-		padding: 0.1rem 0.2rem 0.1rem 0.1rem;
+		padding: 0 0.2rem 0 0.1rem;
 		max-height: 0.6rem;
 		box-sizing: border-box;
+		height: 100%;
+		.news-cont {
+			position: relative;
+			top: 0;
+			transition: top 0.3s linear;
+		}
 		.a {
 			color: @black;
-			display: block;
+			display: flex;
+			align-items: center;
 			overflow: hidden;
 			white-space: nowrap;
 			text-overflow: ellipsis;
+			height: 0.6rem;
 		}
 		.circle {
 			width: 0.08rem;
@@ -38,40 +46,19 @@
 			margin-right: 0.1rem;
 		}
 		.txt {
+			flex: 1;
 			font-size: 0.14rem;
 			vertical-align: middle;
+			overflow: hidden;
+			text-overflow: ellipsis;
+			white-space: nowrap;
 		}
 		.slick-initialized {
 			height: 100%;
 			box-sizing: border-box;
 			padding: 0.13rem 0;
 		}
-		.slick-dots {
-			display: none !important;
-		}
-		.slick-track {
-			height: 100%;
-		}
-		.slick-slide {
-			height: 100% !important;
-		}
-		.slick-prev,
-		.slick-next {
-			border-radius: 50%;
-			background: #fff;
-			border: none;
-			width: 0.2rem;
-			height: 0.2rem;
-		}
-		.slick-prev:before,
-		.slick-next:before {
-			position: absolute;
-			left: -0.03rem;
-			top: -0.01rem;
-			color: @grey;
-			opacity: 1;
-			font-size: 0.26rem;
-		}
+
 		.title {
 			overflow: hidden;
 			text-overflow: ellipsis;
@@ -88,14 +75,5 @@
 			padding: 0 0.1rem;
 			margin-top: 0.02rem;
 		}
-	}
-	.more {
-		display: block;
-		width: 0.39rem;
-		height: 0.6rem;
-
-		background: url("../../../lib/img/more.png") @orange1 center center
-			no-repeat;
-		background-size: 80% auto;
 	}
 }

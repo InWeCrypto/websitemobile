@@ -65,7 +65,7 @@ module.exports = {
 	entries: entriesConfig,
 	assetsRoot: path.resolve(__dirname, "../dist"),
 	assetsSubDirectory: "assets",
-	commonsChunkName: ["app", "vendor", "manifest"],
+	commonsChunkName: ["app", "vendor", "pace", "manifest"],
 	dev: {
 		env: require("./dev.env.js"),
 		assetsPublicPath: "/"

@@ -19,6 +19,7 @@ class AppComponent extends Component {
 		};
 	}
 	async componentWillMount() {
+		Pace.start();
 		let d = await this.props.getAllInfoAction();
 	}
 
@@ -90,48 +91,27 @@ class AppComponent extends Component {
 								暂无数据
 							</div>
 						) : (
-							showData.map(item => {
+							showData.map((item, index) => {
 								return (
-									<div className="group" key={item.id}>
-										<div className="group-title">
+									<a
+										href={item.url}
+										className="group"
+										key={index}
+									>
+										<div className="img-box">
+											<img
+												src="https://ss1.baidu.com/6ONXsjip0QIZ8tyhnq/it/u=2337889669,494384891&fm=173&s=6DC1A60C4E782D9265B412930300C08C&w=218&h=146&img.JPG"
+												alt=""
+											/>
+										</div>
+										<div className="title">
 											{item.title}
 										</div>
-										<div className="group-cont">
-											<div className="img-box">
-												<img src={item.img} />
-											</div>
-											<a
-												className="group-info"
-												href={item.url}
-											>
-												<div>{item.desc}</div>
-											</a>
+										<div className="intro">{item.desc}</div>
+										<div className="time">
+											{item.created_at}
 										</div>
-										<div className="group-ctrl">
-											<span className="txt">
-												{item.updated_at}
-												&nbsp;|&nbsp;
-											</span>
-											<span className="txt">
-												阅读：{item.click_rate}&nbsp;|&nbsp;
-											</span>
-											<span className="txt">
-												回复：{item.is_comment}&nbsp;|&nbsp;
-											</span>
-											<span className="txt">
-												收藏&nbsp;&nbsp;
-												<img
-													className="collect"
-													src={
-														item.save_user &&
-														item.save_user !== 0
-															? collected
-															: uncollect
-													}
-												/>
-											</span>
-										</div>
-									</div>
+									</a>
 								);
 							})
 						)}

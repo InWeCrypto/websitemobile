@@ -51,61 +51,67 @@ class Detail extends Component {
 		return (
 			<div>
 				{!data || data.length === 0 ? (
-					"暂无数据"
+					<div style={{ textAlign: "center", padding: ".3rem" }}>
+						暂无数据
+					</div>
 				) : (
 					<div className="detail">
-						<div className="detail-title">
-							<h2>{data.title}</h2>
-							<p>更新：{data.updated_at}</p>
-						</div>
-						<ul className="detail-risk">
-							<li className="risk-left">
-								<span className="left-score">
-									{data.ico_score}
-								</span>
-								<span>{data.assess_status}</span>
-							</li>
-
-							<li className="risk-middle">
-								风险等级：<span
-									className="risk-level"
-									style={{
-										background: data.risk_level_color
-									}}
-								/>{" "}
-								{data.risk_level_name}
-							</li>
-							<li className="risk-right">
-								{data.tags &&
-									data.tags.length > 0 &&
-									data.tags.map(item => {
-										return (
-											<span
-												className="risk-label"
-												key={item.id}
-											>
-												{item.tag_info.name}
-											</span>
-										);
-									})}
-							</li>
-						</ul>
-						<p className="declaration">
-							郑重声明：所有 ICO 都有归 ０
-							的风险，所有信息仅供参考，不构成任何投资发起
-						</p>
-						<div className="detail-project">
-							<h4>项目概述</h4>
-							<div className="project-main">
-								<img src={data.img} />
-								<div className="project-text">{data.desc}</div>
-								<p className="project-website">
-									官网：{data.website}
-								</p>
+						<div className="box1">
+							<div className="detail-title">
+								<h2>{data.title}</h2>
+								<p>更新：{data.updated_at}</p>
 							</div>
+							<ul className="detail-risk">
+								<li className="risk-left">
+									<span className="left-score">
+										{data.ico_score}
+									</span>
+									<span>{data.assess_status}</span>
+								</li>
+
+								<li className="risk-middle">
+									风险等级：<span
+										className="risk-level"
+										style={{
+											background: data.risk_level_color
+										}}
+									/>{" "}
+									{data.risk_level_name}
+								</li>
+								<li className="risk-right">
+									{data.tags &&
+										data.tags.length > 0 &&
+										data.tags.map(item => {
+											return (
+												<span
+													className="risk-label"
+													key={item.id}
+												>
+													{item.tag_info.name}
+												</span>
+											);
+										})}
+								</li>
+							</ul>
+							<p className="declaration">
+								郑重声明：所有 ICO
+								都有归０的风险，所有信息仅供参考
+							</p>
 						</div>
+
 						<div className="detail-ico-publish">
-							<h4>ICO发行情况</h4>
+							<h4 className="title-p">
+								<div className="title-p-txt">ICO详情</div>
+								{data.website && (
+									<a
+										className="a"
+										target="_blacnk"
+										href={data.website}
+									>
+										官网>
+									</a>
+								)}
+							</h4>
 							<table className="publish-content">
 								{data.ico_assess_issue_info &&
 									data.ico_assess_issue_info.length > 0 &&
@@ -118,7 +124,7 @@ class Detail extends Component {
 													>{`${item.crowdfunding_start_at.substring(
 														0,
 														10
-													)}-${item.crowdfunding_end_at.substring(
+													)}至${item.crowdfunding_end_at.substring(
 														5,
 														10
 													)}`}</td>
@@ -164,19 +170,39 @@ class Detail extends Component {
 						</div>
 						<div className="detail-strcture">
 							<h4>结构</h4>
-							<div className="strcture-chart" ref="strcture" />
-							<div className="strcture-detail">
-								{data.ico_assess_structure &&
-									data.ico_assess_structure.length > 0 &&
-									data.ico_assess_structure.map(item => {
-										return (
-											<p key={item.id}>{`${
-												item.color_name
-											} : ${item.percentage}% , ${
-												item.desc
-											}`}</p>
-										);
-									})}
+							<div className="box2">
+								<div
+									className="strcture-chart"
+									ref="strcture"
+								/>
+								<div className="strcture-detail">
+									{data.ico_assess_structure &&
+										data.ico_assess_structure.length > 0 &&
+										data.ico_assess_structure.map(item => {
+											return (
+												<p
+													className="strcture-box"
+													key={item.id}
+												>
+													<div className="strcture-name">
+														{item.color_name}:
+													</div>
+													<div className="strcture-info">
+														{item.percentage}%{
+															item.desc
+														}
+													</div>
+												</p>
+											);
+										})}
+								</div>
+							</div>
+						</div>
+						<div className="detail-project">
+							<h4>项目概述</h4>
+							<div className="project-main">
+								<img src={data.img} />
+								<div className="project-text">{data.desc}</div>
 							</div>
 						</div>
 						<div className="detail-analy">
@@ -223,7 +249,7 @@ class Detail extends Component {
 								className="white-paper"
 								href={data.white_paper_url}
 							>
-								白皮书
+								白皮书>
 							</a>
 						</div>
 					</div>

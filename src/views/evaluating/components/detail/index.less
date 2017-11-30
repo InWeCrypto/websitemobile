@@ -1,11 +1,16 @@
+@import "../../../lib/css/base.less";
 .detail {
-	margin: 0.1rem;
-	padding: 0 0.1rem;
+	margin: 0.1rem 0;
+	//padding: 0 0.1rem;
 	padding-bottom: 0.2rem;
 	text-align: left;
 	font-size: 0.12rem;
-	background: rgba(27, 150, 209, 1);
-	color: #fff;
+	background: #f2f2f2;
+	color: #404040;
+	.box1 {
+		background: #fff;
+		padding: 0.1rem;
+	}
 	h4 {
 		text-align: left;
 	}
@@ -27,7 +32,7 @@
 		align-items: center;
 		justify-content: center;
 		background: rgba(255, 255, 255, 0.2);
-		box-shadow: 0px 1px 2px rgba(4, 0, 0, 0.45);
+		border: 0.01rem solid @grey2;
 		li {
 			flex: 1;
 		}
@@ -45,8 +50,8 @@
 			line-height: 0.38rem;
 			margin-bottom: 0.08rem;
 			border-right: 1px solid #fff;
-			color: rgba(255, 50, 50, 1);
-			background: #fff;
+			color: #fff;
+			background: @orange;
 			border-radius: 50%;
 			text-align: center;
 		}
@@ -58,8 +63,8 @@
 		}
 		.risk-label {
 			display: inline-block;
-			border: 1px solid #fff;
-			border-radius: 0.07rem;
+			border: 1px solid @grey2;
+			border-radius: 0.03rem;
 			padding: 0.02rem 0.06rem;
 			margin-bottom: 0.05rem;
 		}
@@ -78,6 +83,9 @@
 	}
 	// 项目概述
 	.detail-project {
+		padding: 0.1rem;
+		box-sizing: border-box;
+		background: #fff;
 		img {
 			width: 100%;
 			height: 1rem;
@@ -94,14 +102,31 @@
 
 	//ico发行情况
 	.detail-ico-publish {
+		background: #fff;
+		box-sizing: border-box;
+		padding: 0.1rem;
+		.title-p {
+			display: flex;
+			.title-p-txt {
+				flex: 1;
+			}
+			.a {
+				border: 0.01rem solid @orange;
+				color: @orange;
+				padding: 0.02rem;
+				border-radius: 0.03rem;
+				font-weight: 400;
+				font-size: 0.12rem;
+			}
+		}
 		.publish-content {
 			margin: 0.1rem 0 0.13rem 0;
 			border-spacing: 0;
 			width: 100%;
-			padding: 0.05rem 0.3rem;
+			//padding: 0.05rem 0.3rem;
 			// text-align: center;
-			color: rgba(255, 255, 255, 1);
-			box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.67);
+			//color: rgba(255, 255, 255, 1);
+			//box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.67);
 			background: rgba(255, 255, 255, 0.2);
 		}
 		th {
@@ -109,7 +134,7 @@
 		}
 		td,
 		th {
-			height: 0.2rem;
+			height: 0.3rem;
 			border-spacing: 0;
 			font-size: 0.1rem;
 			// border-bottom: 1px solid #fff;
@@ -139,19 +164,39 @@
 	.detail-strcture {
 		height: auto;
 		margin-bottom: 0.13rem;
+		padding: 0.1rem;
+		background: #fff;
+		.box2 {
+			display: flex;
+			align-items: center;
+		}
 		.strcture-chart {
 			width: 1.3rem;
 			height: 1.3rem;
-			margin: 0 auto;
+			margin-right: 0.1rem;
 		}
 		.strcture-detail {
 			line-height: 0.2rem;
+			flex: 1;
+		}
+		.strcture-box {
+			display: flex;
+			align-items: flex-start;
+			.strcture-name {
+				min-width: 0.3rem;
+			}
+			.strcture-info {
+				flex: 1;
+			}
 		}
 	}
 
 	// 项目分析
 	.detail-analy {
 		position: relative;
+		background: #fff;
+		box-sizing: border-box;
+		padding: 0.1rem;
 		table {
 			margin: 0 auto;
 			border: 1px solid #e6e6e6;
@@ -160,7 +205,7 @@
 			height: 1.73rem;
 			color: #333333;
 			background: #fff;
-			box-shadow: 0px 1px 2px rgba(4, 0, 0, 0.45);
+			//box-shadow: 0px 1px 2px rgba(4, 0, 0, 0.45);
 			text-align: center;
 		}
 
@@ -177,15 +222,15 @@
 		}
 		.white-paper {
 			position: absolute;
-			top: 0;
-			right: 0;
-			width: 0.5rem;
-			height: 0.23rem;
-			line-height: 0.23rem;
+			top: 0.1rem;
+			right: 0.1rem;
+			padding: 0.03rem;
 			text-align: center;
-			color: #fff;
-			background: rgba(62, 73, 91, 1);
-			box-shadow: 0px 1px 2px rgba(4, 0, 0, 0.45);
+			color: @orange;
+			border: 1px solid @orange;
+			border-radius: 0.03rem;
+			//background: rgba(62, 73, 91, 1);
+			//box-shadow: 0px 1px 2px rgba(4, 0, 0, 0.45);
 		}
 	}
 	.project-analy-title {

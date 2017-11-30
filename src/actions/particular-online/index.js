@@ -1,7 +1,6 @@
 import { getData } from "../../views/lib/js/app";
 import { requestUrl } from "../../config/config";
 export const TOTLEDATA = "TOTLEDATA";
-//const TIMEPRICEINDEX = "TIMEPRICEINDEX";
 export const TIMEPRICEDATA = "TIMEPRICEDATA";
 export const MARKETDATA = "MARKETDATA";
 export const MARKETTYPE = "MARKETTYPE";
@@ -11,6 +10,7 @@ export const VIDEOLIST = "VIDEOLIST";
 export const IMGTXTLIST = "IMGTXTLIST";
 export const DAYINDEX = "DAYINDEX";
 export const KLINEDATA = "KLINEDATA";
+export const NEWSFLASH = "NEWSFLASH";
 export const totleData = data => {
 	return {
 		type: TOTLEDATA,
@@ -32,15 +32,6 @@ const getTotleDataAction = dispatch => data => {
 			console.log(e);
 		});
 };
-// const timePrice = data => {
-// 	return {
-// 		type: TIMEPRICEINDEX,
-// 		data
-// 	};
-// };
-// const changeTimePriceIndexAction = dispatch => idx => {
-// 	dispatch(timePrice(idx));
-// };
 const timePriceData = data => {
 	return {
 		type: TIMEPRICEDATA,
@@ -185,9 +176,24 @@ const getKlineDataAction = dispatch => data => {
 			console.log(e);
 		});
 };
+const newsList = data => {
+	return {
+		type: NEWSFLASH,
+		data
+	};
+};
+const getNewsListAction = dispatch => data => {
+	getData(`${requestUrl}/category/${data.id}/articles/txt/all`).then(res => {
+		if (res.code === 4000) {
+			dispatch(newsList(res.data));
+		} else {
+			throw new Error(res.msg);
+		}
+	});
+};
+
 export default {
 	getTotleDataAction,
-	//changeTimePriceIndexAction,
 	getTimePriceDataAction,
 	getMarketDataAction,
 	changeMarketTypeAction,
@@ -196,5 +202,6 @@ export default {
 	getImgTxtListAction,
 	changeInewsIndex,
 	changeDayIndexAction,
-	getKlineDataAction
+	getKlineDataAction,
+	getNewsListAction
 };

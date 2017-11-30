@@ -20,16 +20,23 @@ class AppComponent extends Component {
 			title: "资讯详情"
 		};
 	}
+	componentWillMount() {
+		Pace.start();
+	}
 	componentDidMount() {
 		document.title = this.state.title;
 	}
-	// componentDidUpdate() {
-	// 	//console.log(this.props);
-	// }
+	componentWillReceiveProps(nextProps) {
+		//console.log(nextProps.data.content);
+		if (nextProps.data && nextProps.data != this.props.data) {
+			const cont = this.refs.content;
+			console.log(this.refs);
+			cont.innerHTML = nextProps.data.content;
+		}
+	}
 	render() {
 		let state = this.state;
 		let { data } = this.props;
-		console.log(data);
 		return (
 			<Router>
 				<div>
@@ -44,7 +51,7 @@ class AppComponent extends Component {
 								<span className="txt">
 									阅读：{data.click_rate}
 								</span>
-								<span className="txt">
+								{/* <span className="txt">
 									回复：{data.comments_count}
 								</span>
 								<span className="txt">
@@ -58,11 +65,11 @@ class AppComponent extends Component {
 												: uncollect
 										}
 									/>
-								</span>
+								</span> */}
 							</div>
-							<div className="detail-cont">{data.desc}</div>
 						</div>
 					)}
+					<div className="detail-cont" ref="content" />
 				</div>
 			</Router>
 		);

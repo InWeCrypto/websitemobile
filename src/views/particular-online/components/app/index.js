@@ -4,7 +4,7 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import $ from "jquery";
 import echarts, { disConnect } from "echarts";
-import actions from "../../../../actions/particular-online/";
+import actions, { totleData } from "../../../../actions/particular-online/";
 import CommonTitle from "../../../components/common-title/";
 import RealTime from "../realtime/";
 import Trade from "../trade/";
@@ -25,6 +25,7 @@ class AppComponent extends Component {
 	async componentWillMount() {
 		let query = window.util.getQuery(window.location.href);
 		document.title = "项目详情";
+		Pace.start();
 		await this.props.getTotleDataAction({ id: query.id });
 	}
 	getTime(type) {
@@ -125,6 +126,11 @@ class AppComponent extends Component {
 			nextProps.totleData.project_desc.map((item, index) => {
 				this.insertHtml(index, `${requestUrl}/article/${item.id}`);
 			});
+		}
+
+		if (nextProps.totleData && !this.props.newsList) {
+			console.log(11);
+			this.props.getNewsListAction({ id: nextProps.totleData.id });
 		}
 	}
 
@@ -497,7 +503,13 @@ class AppComponent extends Component {
 		e.target.style.display = "none";
 	}
 	render() {
-		const { totleData, videoList, inewsIndex, imgTxtList } = this.props;
+		const {
+			totleData,
+			videoList,
+			inewsIndex,
+			imgTxtList,
+			newsList
+		} = this.props;
 		const setting = {
 			dots: false,
 			infinite: true,
@@ -511,7 +523,9 @@ class AppComponent extends Component {
 			<div className="particular-online">
 				<CommonTitle title="项目详情" />
 				<div className="title">{totleData ? totleData.name : ""}</div>
-				<NewsFlash />
+				{newsList &&
+					newsList.length > 0 && <NewsFlash newsList={newsList} />}
+
 				<div className="container">
 					{totleData &&
 						totleData.type == 5 && (
@@ -708,7 +722,8 @@ const mapStateToProps = state => {
 		imgTxtList: state.pageData.imgTxtList,
 		dayIndex: state.pageData.dayIndex,
 		klineData: state.pageData.klineData,
-		time_price_index: state.pageData.time_price_index
+		time_price_index: state.pageData.time_price_index,
+		newsList: state.pageData.newsList
 	};
 };
 const mapDispatchToProps = (dispatch, ownProps) => {
@@ -720,7 +735,8 @@ const mapDispatchToProps = (dispatch, ownProps) => {
 		getImgTxtListAction: actions.getImgTxtListAction(dispatch),
 		changeInewsIndex: actions.changeInewsIndex(dispatch),
 		changeDayIndexAction: actions.changeDayIndexAction(dispatch),
-		getKlineDataAction: actions.getKlineDataAction(dispatch)
+		getKlineDataAction: actions.getKlineDataAction(dispatch),
+		getNewsListAction: actions.getNewsListAction(dispatch)
 	};
 };
 export default connect(mapStateToProps, mapDispatchToProps)(AppComponent);
